@@ -41,7 +41,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    // Definisemo nacin utvrdjivanja korisnika pri autentifikaciji
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -49,12 +48,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-    // Injektujemo implementaciju iz TokenUtils klase kako bismo mogli da koristimo njene metode za rad sa JWT u TokenAuthenticationFilteru
     @Autowired
     private TokenUtils tokenUtils;
 
-
-    // Definisemo prava pristupa za zahteve ka odredjenim URL-ovima/rutama
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -73,11 +69,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 
-    // Definisanje konfiguracije koja utice na generalnu bezbednost aplikacije
     @Override
     public void configure(WebSecurity web) throws Exception {
 
-        web.ignoring().antMatchers(HttpMethod.POST, "/auth/login");
         web.ignoring().antMatchers(HttpMethod.GET, "/", "/webjars/**", "/*.html", "favicon.ico", "/**/*.html",
                 "/**/*.css", "/**/*.js");
     }
