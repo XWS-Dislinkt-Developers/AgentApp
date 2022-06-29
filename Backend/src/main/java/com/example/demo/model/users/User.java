@@ -1,6 +1,5 @@
 package com.example.demo.model.users;
 
-import com.example.demo.model.users.Role;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
@@ -42,6 +41,8 @@ public class User implements UserDetails {
 	private Role role;
 	@Column(name = "last_password_reset_date", nullable = true)
 	private Timestamp lastPasswordResetDate;
+	@Column(name = "api_token")
+	private String apiToken;
 	
 	public User() {}
 
@@ -152,4 +153,8 @@ public class User implements UserDetails {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+	public String getApiToken() { return apiToken; }
+
+	public void setApiToken(String apiToken) { this.apiToken = apiToken;}
 }
