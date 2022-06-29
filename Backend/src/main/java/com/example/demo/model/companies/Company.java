@@ -24,7 +24,7 @@ public class Company {
     @Column(nullable = false)
     private String name;
     @Column
-    private Date yearOfOpening;
+    private String yearOfOpening;
     @ElementCollection
     @Column
     private List<String> offices;
@@ -55,7 +55,7 @@ public class Company {
 
     public Company() {}
 
-    public Company(String name, Date yearOfOpening, List<String> offices, User companyOwner, String description, List<String> positions) {
+    public Company(String name, String yearOfOpening, List<String> offices, User companyOwner, String description, List<String> positions) {
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.offices = offices;
@@ -80,11 +80,11 @@ public class Company {
         this.name = name;
     }
 
-    public Date getYearOfOpening() {
+    public String getYearOfOpening() {
         return yearOfOpening;
     }
 
-    public void setYearOfOpening(Date yearOfOpening) {
+    public void setYearOfOpening(String yearOfOpening) {
         this.yearOfOpening = yearOfOpening;
     }
 

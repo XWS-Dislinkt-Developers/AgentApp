@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CompanyRequestRepository extends JpaRepository<CompanyRegistrationRequest, Integer> {
+     CompanyRegistrationRequest findById(int id);
 }
