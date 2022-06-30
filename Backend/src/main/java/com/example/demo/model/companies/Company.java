@@ -25,7 +25,7 @@ public class Company {
     private String name;
     @Column
     private String yearOfOpening;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @Column
     private List<String> offices;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE )
