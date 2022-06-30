@@ -1,0 +1,400 @@
+
+<div class="menu" > 
+    <nav class="nav nav-pills nav-justified">
+        <a class="nav-link  logoImg"  > <img class="logoImg" src="../../favicon.ico"> </a>
+        <a class="nav-link  logo"  href=""  style="list-style-type: none ;"> Jobby</a>
+        <a class="nav-link dropdown-toggle links" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Create impression
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#"  data-toggle="modal" data-target="#comment">Comment</a>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#salandben">Salary and benefits</a>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#interview">Interview</a>
+        </div>
+        <a class="nav-link links" href="companies" >Companies </a>
+        <a class="nav-link links"  href="jobs">Jobs </a>
+        <a class="nav-link links" data-toggle="modal" data-target="#registration" href="#">Registration </a>
+        <a class="nav-link linkSign" data-toggle="modal" data-target="#signIn" href="#" style="margin-bottom: 1rem; color: white">Sign in  </a>
+    
+      </nav>
+
+</div>
+
+<!-- modal for sign in -->
+<div id="signIn" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+  
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sign in</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form">
+                      <label style="font-size: medium;">Username</label>
+                     <input type="text" class="form-control" placeholder="Enter Username" > 
+                 
+                      <label style="font-size: medium;">Password</label>
+                      <input type="password" class="form-control" placeholder="Enter Password" >
+                    
+            </div>
+  
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal for registration -->
+  <div id="registration" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+  
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Register</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form">
+              <label style="font-size: medium;">Name</label>
+              <input type="text" class="form-control" placeholder="Enter Name" > 
+          
+               <label style="font-size: medium;">Surname</label>
+               <input type="text" class="form-control" placeholder="Enter surname" >
+
+                      <label style="font-size: medium;">Email</label>
+                     <input type="text" class="form-control" placeholder="Enter email" > 
+                     <label style="font-size: medium;">Telephone</label>
+                     <input type="text" class="form-control" placeholder="Enter telephone" > 
+                     
+                      <label style="font-size: medium;">Address</label>
+                      <div class="row">
+                        <div class="col-sm-7"> 
+                        <input type="text" class="form-control" placeholder="Street" > 
+                        </div>
+                        <div class="col-sm-5"> 
+                          <input type="text" class="form-control" placeholder="Number" > 
+                        </div>
+                         </div>
+                         <div class="row">
+                          <div class="col-sm-7"> 
+                          <input type="text" class="form-control" placeholder="City" > 
+                          </div>
+                          <div class="col-sm-5"> 
+                            <input type="text" class="form-control" placeholder="Country" > 
+                          </div>
+                           </div>
+                     <label style="font-size: medium;">Password</label>
+                      <input type="password" class="form-control" placeholder="Enter Password" >
+                      <label style="font-size: medium;">Repeat password</label>
+                      <input type="password" class="form-control" placeholder="Enter repeted password" >
+            </div>
+  
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- modal for comment -->
+<div id="comment" class="modal fade bd-example-modal-lg " style="display: none; " role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: 65rem;">
+  
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Leave comment</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form">
+              <div class="row"> 
+                        <div class="col-sm-2" ><label style="font-size: medium;">Company</label> </div> 
+                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company" >  </div>
+               </div>
+                      
+              <div class="row">
+                        <div class="col-sm-2"><label style="font-size: medium;">Position</label> </div> 
+                        <div class="col-sm-4">  
+                          <select class="custom-select">
+                          <option selected>Position</option>
+                          <option value="1">Software developer</option>
+                          <option value="2">Animator</option>
+                          <option value="3">Administration</option>
+                          <option value="3">Customer support</option>
+                        </select>  </div>
+  
+              
+  
+             
+                <div class="col-sm-2 "><label style="font-size: medium;">Experience</label> </div> 
+                <div class="col-sm-4">  
+                  <select class="custom-select">
+                  <option selected>Level</option>
+                  <option value="1">Junior</option>
+                  <option value="2">Medior</option>
+                  <option value="3">Senior</option>
+                </select>  </div>
+                </div>
+             
+                 
+              <div class="row">
+                <div class="col-sm-2"><label style="font-size: medium;">Engagement</label> </div> 
+                <div class="col-sm-4">  
+                  <select class="custom-select">
+                  <option selected>Time</option>
+                  <option value="1">Full time</option>
+                  <option value="2">Part time</option>
+                  <option value="3">Frelance</option>
+                  <option value="3">Intern</option>
+                </select>  </div>
+              
+                <div class="col-sm-2"><label style="font-size: medium;">Employed</label> </div> 
+                <div class="col-sm-4">  
+                  <select class="custom-select">
+                  <option selected>status</option>
+                  <option value="1">Current</option>
+                  <option value="2">Former</option>
+                </select>  </div>
+                
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col-sm-2"><label style="font-size: medium;">Title</label> </div> 
+                <div class="col-sm-10">  
+                  <input type="text" class="form-control" placeholder="title" >
+                  
+                
+              </div>      
+            </div>
+  
+              <label> Positive</label>
+            <div class="row">   <div class="col"> <textarea type="text" class="form-control"> </textarea></div></div>
+  
+            <label> Negative</label>
+            <div class="row">   <div class="col">   <textarea type="text" class="form-control"> </textarea></div></div>
+  
+            <div class="row"> <div class="col-sm-2"> <label> Grade</label> </div>
+             <div class="col-sm-5">
+               <!-- <span> <span class = "fa fa-star checked" > </span> <span class = "fa fa-star checked" ></span> <span class = "fa fa-star unchecked" > </span><span class = "fa fa-star unchecked" > </span><span class = "fa fa-star unchecked" ></span> </span> -->
+               <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+               </div>
+           
+            </div></div>
+  
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  
+   <!-- modal for salary and benefits -->
+   <div id="salandben" class="modal fade bd-example-modal-lg " style="display: none; " role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: 65rem;">
+  
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Salary and benefits</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form">
+              <div class="row"> 
+                        <div class="col-sm-2" ><label style="font-size: medium;">Company</label> </div> 
+                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company" >  </div>
+               </div>
+                      
+              <div class="row">
+                        <div class="col-sm-2"><label style="font-size: medium;">Position</label> </div> 
+                        <div class="col-sm-4">  
+                          <select class="custom-select">
+                          <option selected>Position</option>
+                          <option value="1">Software developer</option>
+                          <option value="2">Animator</option>
+                          <option value="3">Administration</option>
+                          <option value="3">Customer support</option>
+                        </select>  </div>
+  
+              
+  
+             
+                <div class="col-sm-2 "><label style="font-size: medium;">Experience</label> </div> 
+                <div class="col-sm-4">  
+                  <select class="custom-select">
+                  <option selected>Level</option>
+                  <option value="1">Junior</option>
+                  <option value="2">Medior</option>
+                  <option value="3">Senior</option>
+                </select>  </div>
+                </div>
+             
+                 
+              <div class="row">
+                <div class="col-sm-2"><label style="font-size: medium;">Engagement</label> </div> 
+                <div class="col-sm-4">  
+                  <select class="custom-select">
+                  <option selected>Time</option>
+                  <option value="1">Full time</option>
+                  <option value="2">Part time</option>
+                  <option value="3">Frelance</option>
+                  <option value="3">Intern</option>
+                </select>  </div>
+              
+                <div class="col-sm-2"><label style="font-size: medium;">Employed</label> </div> 
+                <div class="col-sm-4">  
+                  <select class="custom-select">
+                  <option selected>status</option>
+                  <option value="1">Current</option>
+                  <option value="2">Former</option>
+                </select>  </div>
+                
+              </div>
+             
+             
+  
+              <h1> Benefits</h1>
+            
+  
+         
+  
+            <div class="row"> 
+              <div class="col-sm-3"> <label> Flexible work time</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-5"> <label> Entertainment and fitness content</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             
+            </div>
+            <div class="row"> 
+              <div class="col-sm-3"> <label> Work from home</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-5"> <label> Paid training and coaching</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             
+            </div>
+  
+            <div class="row"> 
+              <div class="col-sm-3"> <label> Private insurance</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-5"> <label> Work through an agency</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             
+            </div>
+  
+            <div class="row"> 
+              <div class="col-sm-3"> <label> Provided food</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-5"> <label> Profit sharing</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             
+            </div>
+            <div class="row"> 
+              <div class="col-sm-3"> <label> Provided parking</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-5"> <label> Company shares</label> </div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  
+  <!-- modal for intterview -->
+  <div id="interview" class="modal fade bd-example-modal-lg " style="display: none; " role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: 65rem;">
+  
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Interview</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form">
+              <div class="row"> 
+                        <div class="col-sm-2" ><label style="font-size: medium;">Company</label> </div> 
+                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company" >  </div>
+               </div>
+                      
+              <div class="row">
+                        <div class="col-sm-2"><label style="font-size: medium;">Position</label> </div> 
+                        <div class="col-sm-4">  
+                          <select class="custom-select">
+                          <option selected>Position</option>
+                          <option value="1">Software developer</option>
+                          <option value="2">Animator</option>
+                          <option value="3">Administration</option>
+                          <option value="3">Customer support</option>
+                        </select>  </div>
+  
+              
+  
+             
+                <div class="col-sm-2 "><label style="font-size: medium;">Year of interview</label> </div> 
+                <div class="col-sm-4">  
+                  <select class="custom-select">
+                    <option selected>year</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                  </select>    </div>
+                </div>
+             
+                 
+              
+              <hr/>
+              <div class="row">
+                <div class="col-sm-2"><label style="font-size: medium;">Title</label> </div> 
+                <div class="col-sm-10">  
+                  <input type="text" class="form-control" placeholder="title" >
+                  
+                
+              </div>      
+            </div>
+  
+              <label> HR interview</label>
+            <div class="row">   <div class="col"> <textarea type="text" class="form-control" placeholder="Describe interview with HR"> </textarea></div></div>
+  
+            
+              <label> Technical interview</label>
+              <div class="row"> 
+              <div class="col"> <textarea type="text" class="form-control" placeholder="Describe tehnical interview"> </textarea></div></div>
+  
+            <div class="row"> <div class="col-sm-4"> <label>Interview difficulty </label> </div>
+             <div class="col-sm-6">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button">Easy</button>
+                <button class="btn btn-outline-secondary" type="button">Middle</button>
+                <button class="btn btn-outline-danger" type="button" value="difficult">Difficult</button>
+              </div></div></div>
+  
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </div>
+
