@@ -1,47 +1,25 @@
-package com.example.demo.model.jobOffers;
+package com.example.demo.dto.jobOffers;
 
 import com.example.demo.enums.Engagement;
 import com.example.demo.enums.LevelOfExperience;
-import com.example.demo.model.companies.Company;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
+public class CommentNewDTO {
 
-@Entity
-public class Comment {
-
-    @Id
-    @SequenceGenerator(name = "commentSeqGen", sequenceName = "commentSeqGen", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commentSeqGen")
-    @Column(name="id", unique=true, nullable=false)
-    private int id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
-    @JsonIgnoreProperties("comments")
-    private Company company;
-    @Column
+    private int companyId;
     private String position;
-    @Column
     private boolean currentlyEmployed;
-    @Column
     private String positive;
-    @Column
     private String negative;
-    @Column
     private String projects;
-    @Column
     private double grade;
-    @Column
     private LevelOfExperience levelOfExperience;
-    @Column
     private Engagement engagement;
-    @Column
     private String title;
 
-    public Comment() {}
+    public CommentNewDTO(){}
 
-    public Comment(Company company, String position, boolean currentlyEmployed, String positive, String negative, String projects, double grade, LevelOfExperience levelOfExperience, Engagement engagement, String title) {
-        this.company = company;
+    public CommentNewDTO(int companyId, String position, boolean currentlyEmployed, String positive, String negative, String projects, double grade, LevelOfExperience levelOfExperience, Engagement engagement, String title) {
+        this.companyId = companyId;
         this.position = position;
         this.currentlyEmployed = currentlyEmployed;
         this.positive = positive;
@@ -53,20 +31,12 @@ public class Comment {
         this.title = title;
     }
 
-    public int getId() {
-        return id;
+    public int getCompanyId() {
+        return companyId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public String getPosition() {
@@ -140,6 +110,7 @@ public class Comment {
     public void setTitle(String title) {
         this.title = title;
     }
+
 
 
 }

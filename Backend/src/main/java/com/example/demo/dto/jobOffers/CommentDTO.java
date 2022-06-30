@@ -1,47 +1,26 @@
-package com.example.demo.model.jobOffers;
+package com.example.demo.dto.jobOffers;
 
 import com.example.demo.enums.Engagement;
 import com.example.demo.enums.LevelOfExperience;
-import com.example.demo.model.companies.Company;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.example.demo.model.jobOffers.Comment;
 
-import javax.persistence.*;
+public class CommentDTO {
 
-@Entity
-public class Comment {
-
-    @Id
-    @SequenceGenerator(name = "commentSeqGen", sequenceName = "commentSeqGen", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "commentSeqGen")
-    @Column(name="id", unique=true, nullable=false)
     private int id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
-    @JsonIgnoreProperties("comments")
-    private Company company;
-    @Column
     private String position;
-    @Column
     private boolean currentlyEmployed;
-    @Column
     private String positive;
-    @Column
     private String negative;
-    @Column
     private String projects;
-    @Column
     private double grade;
-    @Column
     private LevelOfExperience levelOfExperience;
-    @Column
     private Engagement engagement;
-    @Column
     private String title;
 
-    public Comment() {}
+    public CommentDTO() {}
 
-    public Comment(Company company, String position, boolean currentlyEmployed, String positive, String negative, String projects, double grade, LevelOfExperience levelOfExperience, Engagement engagement, String title) {
-        this.company = company;
+    public CommentDTO(int id, String position, boolean currentlyEmployed, String positive, String negative, String projects, double grade, LevelOfExperience levelOfExperience, Engagement engagement, String title) {
+        this.id = id;
         this.position = position;
         this.currentlyEmployed = currentlyEmployed;
         this.positive = positive;
@@ -53,20 +32,25 @@ public class Comment {
         this.title = title;
     }
 
+    public CommentDTO(Comment comment) {
+        this.id = comment.getId();
+        this.position = comment.getPosition();
+        this.currentlyEmployed = comment.isCurrentlyEmployed();
+        this.positive = comment.getPositive();
+        this.negative = comment.getNegative();
+        this.projects = comment.getProjects();
+        this.grade = comment.getGrade();
+        this.levelOfExperience = comment.getLevelOfExperience();
+        this.engagement = comment.getEngagement();
+        this.title = comment.getTitle();
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 
     public String getPosition() {
@@ -140,6 +124,4 @@ public class Comment {
     public void setTitle(String title) {
         this.title = title;
     }
-
-
 }

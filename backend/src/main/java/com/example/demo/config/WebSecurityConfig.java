@@ -66,6 +66,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/jobOffer/getForCompany/{id}").permitAll()
                 .antMatchers("/jobOffer/getAll").permitAll()
 
+                .antMatchers("/comment/save").permitAll()
+                .antMatchers("/comment/getComments/{id}").permitAll()
+
                 .anyRequest().authenticated().and()
 
 
