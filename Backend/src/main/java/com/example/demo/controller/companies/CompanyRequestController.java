@@ -1,4 +1,4 @@
-package com.example.demo.controller.comanies;
+package com.example.demo.controller.companies;
 
 import com.example.demo.dto.companies.CompanyRequestDTO;
 import com.example.demo.dto.companies.CompanyRequestViewDTO;

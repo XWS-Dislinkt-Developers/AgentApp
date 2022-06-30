@@ -1,8 +1,7 @@
-package com.example.demo.controller.comanies;
+package com.example.demo.controller.companies;
 
 import com.example.demo.dto.companies.*;
 import com.example.demo.model.companies.Company;
-import com.example.demo.model.companies.CompanyRegistrationRequest;
 import com.example.demo.service.companies.CompanyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +23,21 @@ public class CompanyController {
     }
 
     @PostMapping(value = "/searchName")
-    public ResponseEntity<List<CompanyDTO>> getCompanies(@RequestBody CompanySearchNameDTO search){
+    public ResponseEntity<List<CompanyDTO>> getCompanies(@RequestBody CompanySearchDTO search){
         ArrayList<CompanyDTO> ret = new ArrayList<>();
 
-        for (Company company : this.companyService.getCompanies(search.getName())){
+        for (Company company : this.companyService.getCompanies(search.getSearchParam())){
+            ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()));
+        }
+
+        return new ResponseEntity<List<CompanyDTO>>(ret, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/searchNameAndOffice")
+    public ResponseEntity<List<CompanyDTO>> getCompaniesFullSearch(@RequestBody CompanySearchDTO search){
+        ArrayList<CompanyDTO> ret = new ArrayList<>();
+
+        for (Company company : this.companyService.getCompaniesFullSearch(search.getSearchParam())){
             ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()));
         }
 

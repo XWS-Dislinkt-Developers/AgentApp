@@ -1,7 +1,6 @@
 package com.example.demo.service.companies;
 
 import com.example.demo.dto.companies.CompanyChangeDTO;
-import com.example.demo.dto.companies.CompanyDTO;
 import com.example.demo.model.companies.Company;
 import com.example.demo.repository.companies.CompanyRepository;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,11 @@ public class CompanyService {
     }
 
     public List<Company> getCompanies(String name) {
-        List<Company> ret = this.companyRepository.getCompanies(name);
-        return ret;
+        return this.companyRepository.getCompanies(name);
+    }
+
+    public List<Company> getCompaniesFullSearch(String searchParam) {
+        return this.companyRepository.getCompaniesFullSearch(searchParam);
     }
 
     public Company getCompany(int id) {
