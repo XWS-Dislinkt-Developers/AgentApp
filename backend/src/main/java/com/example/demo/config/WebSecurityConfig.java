@@ -27,11 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    // Servis koji se koristi za citanje podataka o korisnicima aplikacije
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    // Handler za vracanje 401 kada klijent sa neodogovarajucim korisnickim imenom i lozinkom pokusa da pristupi resursu
     @Autowired
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
@@ -59,6 +57,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 
                 .authorizeRequests().antMatchers("/auth/**").permitAll()
+                .antMatchers("/company/searchName").permitAll()
+                .antMatchers("/company/{id}").permitAll()
+                .antMatchers("/company/searchNameAndOffice").permitAll()
 
                 .anyRequest().authenticated().and()
 
