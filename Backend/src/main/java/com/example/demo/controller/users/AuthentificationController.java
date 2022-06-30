@@ -58,11 +58,11 @@ public class AuthentificationController {
     @RequestMapping(value="/signup", method = {RequestMethod.POST })
     public ResponseEntity<HttpStatus> addUser(@RequestBody UserRequest userRequest){
         User existUser = this.userService.findByEmail(userRequest.getEmail());
-       if (existUser != null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-       }
-       userService.save(userRequest);
-       return new ResponseEntity<>(HttpStatus.CREATED);
+           if (existUser != null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           }
+           userService.save(userRequest);
+           return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

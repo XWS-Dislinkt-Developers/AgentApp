@@ -49,4 +49,13 @@ public class UserService {
         return u;
     }
 
+    public User setUserToCompanyOwner(User companyOwner) {
+        Role role = roleService.findByName("ROLE_COMPANY_OWNER");
+        if (role == null) {
+            role = new Role("ROLE_COMPANY_OWNER");
+            roleService.save(role);
+        }
+        companyOwner.setRole(role);
+        return this.userRepository.save(companyOwner);
+    }
 }

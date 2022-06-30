@@ -2,8 +2,11 @@ package com.example.demo.service.companies;
 
 import com.example.demo.model.companies.Company;
 import com.example.demo.model.companies.CompanyRegistrationRequest;
+import com.example.demo.model.users.User;
 import com.example.demo.repository.companies.CompanyRepository;
 import com.example.demo.repository.companies.CompanyRequestRepository;
+import com.example.demo.repository.users.UserRepository;
+import com.example.demo.service.users.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +16,12 @@ public class CompanyRequestService {
 
     private CompanyRequestRepository companyRequestRepository;
     private CompanyRepository companyRepository;
+    private UserService userService;
 
-    public CompanyRequestService(CompanyRequestRepository companyRequestRepository, CompanyRepository companyRepository){
+    public CompanyRequestService(CompanyRequestRepository companyRequestRepository, CompanyRepository companyRepository, UserService userService){
         this.companyRequestRepository = companyRequestRepository;
         this.companyRepository = companyRepository;
+        this.userService = userService;
     }
 
     public CompanyRegistrationRequest save(CompanyRegistrationRequest companyRegistrationRequest){
@@ -29,7 +34,8 @@ public class CompanyRequestService {
 
     public void approveRequest(int id) {
         CompanyRegistrationRequest request = this.companyRequestRepository.findById(id);
-        this.companyRepository.save(new Company(request.getName(), request.getYearOfOpening(), request.getOffices(), request.getCompanyOwner(), request.getDescription(), request.getPositions()));
+        User user =  userService.setUserToCompanyOwner(request.getCompanyOwner());
+        this.companyRepository.save(new Company(request.getName(), request.getYearOfOpening(), request.getOffices(), user, request.getDescription(), request.getPositions()));
         this.companyRequestRepository.delete(request);
     }
 }

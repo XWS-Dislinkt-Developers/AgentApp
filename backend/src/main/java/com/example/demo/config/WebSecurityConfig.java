@@ -60,6 +60,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/company/searchName").permitAll()
                 .antMatchers("/company/{id}").permitAll()
                 .antMatchers("/company/searchNameAndOffice").permitAll()
+                .antMatchers("/company/getAll").permitAll()
+
+                .antMatchers("/jobOffer/search").permitAll()
+                .antMatchers("/jobOffer/getForCompany/{id}").permitAll()
+                .antMatchers("/jobOffer/getAll").permitAll()
 
                 .anyRequest().authenticated().and()
 

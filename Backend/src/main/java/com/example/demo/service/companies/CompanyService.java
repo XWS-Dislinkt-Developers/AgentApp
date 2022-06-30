@@ -37,4 +37,8 @@ public class CompanyService {
         company.setPositions(companyDTO.getPositions());
         return this.companyRepository.save(company);
     }
+
+    public List<Company> findAll() {
+        return this.companyRepository.findAll();
+    }
 }

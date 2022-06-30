@@ -56,4 +56,15 @@ public class CompanyController {
         Company company = this.companyService.changeCompany(companyDTO);
         return new ResponseEntity<CompanyDTO>(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/getAll")
+    public ResponseEntity<List<CompanyDTO>> getAll(){
+        ArrayList<CompanyDTO> ret = new ArrayList<>();
+
+        for (Company company : this.companyService.findAll()){
+            ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()));
+        }
+
+        return new ResponseEntity<List<CompanyDTO>>(ret, HttpStatus.OK);
+    }
 }

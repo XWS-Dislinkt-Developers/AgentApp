@@ -1,48 +1,25 @@
-package com.example.demo.model.jobOffers;
+package com.example.demo.dto.jobOffers;
 
-import com.example.demo.dto.jobOffers.JobOfferDTO;
 import com.example.demo.enums.LevelOfExperience;
-import com.example.demo.model.companies.Company;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-public class JobOffer {
+public class JobOfferDTO {
 
-    @Id
-    @SequenceGenerator(name = "jobOfferSeqGen", sequenceName = "jobOfferSeqGen", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jobOfferSeqGen")
-    @Column(name="id", unique=true, nullable=false)
     private int id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
-    @JsonIgnoreProperties("jobOffers")
-    private Company company;
-    @Column
     private String position;
-    @Column
     private LevelOfExperience levelOfExperience;
-    @Column
     private String jobDescription;
-    @Column
     private String dailyActivities;
-    @Column
     private String requirements;
-    @Column
     private Boolean promoteOnDislinkt;
-    @Column
-    @ElementCollection
     private List<String> benefits;
-    @Column
     private Date expires;
 
-    public JobOffer() {}
+    public JobOfferDTO() {}
 
-    public JobOffer(Company company, String position, LevelOfExperience levelOfExperience, String jobDescription, String dailyActivities, String requirements, Boolean promoteOnDislinkt, List<String> benefits, Date expires) {
-        this.company = company;
+    public JobOfferDTO(String position, LevelOfExperience levelOfExperience, String jobDescription, String dailyActivities, String requirements, Boolean promoteOnDislinkt, List<String> benefits, Date expires) {
         this.position = position;
         this.levelOfExperience = levelOfExperience;
         this.jobDescription = jobDescription;
@@ -53,31 +30,12 @@ public class JobOffer {
         this.expires = expires;
     }
 
-    public JobOffer(JobOfferDTO jobOfferDTO) {
-        this.position = jobOfferDTO.getPosition();
-        this.levelOfExperience = jobOfferDTO.getLevelOfExperience();
-        this.jobDescription = jobOfferDTO.getJobDescription();
-        this.dailyActivities = jobOfferDTO.getDailyActivities();
-        this.requirements = jobOfferDTO.getRequirements();
-        this.promoteOnDislinkt = jobOfferDTO.getPromoteOnDislinkt();
-        this.benefits = jobOfferDTO.getBenefits();
-        this.expires = jobOfferDTO.getExpires();
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 
     public String getPosition() {
