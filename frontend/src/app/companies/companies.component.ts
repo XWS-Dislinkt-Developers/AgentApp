@@ -11,5 +11,7 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+checkCompany(){
+  
+}
 }

@@ -2,7 +2,7 @@
 <div class="menu" > 
     <nav class="nav nav-pills nav-justified">
         <a class="nav-link  logoImg"  > <img class="logoImg" src="../../favicon.ico"> </a>
-        <a class="nav-link  logo"  href=""  style="list-style-type: none ;"> Jobby</a>
+        <a class="nav-link  logo"  href="profile"  style="list-style-type: none ;"> Jobby</a>
         <a class="nav-link dropdown-toggle links" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Create impression
         </a>
@@ -12,7 +12,9 @@
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#interview">Interview</a>
         </div>
         <a class="nav-link links" href="companies" >Companies </a>
-        <a class="nav-link links" data-toggle="modal" data-target="#create" href="#"> Create company </a>
+        <a class="nav-link links" href="my-company" >My company </a>
+        <a class="nav-link links"  href="jobs">Jobs </a>
+        <a class="nav-link links" data-toggle="modal" data-target="#create" href="#"> Register company </a>
         <a class="nav-link linkSign"  href=""  style="margin-bottom: 1rem; color: white; background-color: dimgrey;">Sign out  </a>
     
       </nav>
@@ -26,42 +28,66 @@
   
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Register</h4>
+          <h4 class="modal-title">Register company</h4>
         </div>
         <div class="modal-body">
             <div class="form">
               <label style="font-size: medium;">Name</label>
               <input type="text" class="form-control" placeholder="Enter Name" > 
           
-               <label style="font-size: medium;">Surname</label>
-               <input type="text" class="form-control" placeholder="Enter surname" >
+               <label style="font-size: medium;">Year of opening</label>
+               <input type="number" class="form-control" placeholder="Enter year" >
 
-                      <label style="font-size: medium;">Email</label>
-                     <input type="text" class="form-control" placeholder="Enter email" > 
-                     <label style="font-size: medium;">Telephone</label>
-                     <input type="text" class="form-control" placeholder="Enter telephone" > 
-                     
-                      <label style="font-size: medium;">Address</label>
-                      <div class="row">
-                        <div class="col-sm-7"> 
-                        <input type="text" class="form-control" placeholder="Street" > 
+               <label style="font-size: medium;">Offices </label>
+               
+               <!-- <div >     
+               <div class="row">
+                <div class="col-sm-7"> 
+                        <input type="text" class="form-control" placeholder="Street"   > 
                         </div>
-                        <div class="col-sm-5"> 
+                       <div class="col-sm-5"> 
                           <input type="text" class="form-control" placeholder="Number" > 
-                        </div>
-                         </div>
-                         <div class="row">
+                        </div> 
+                    </div>
+                    <div class="row">
                           <div class="col-sm-7"> 
-                          <input type="text" class="form-control" placeholder="City" > 
+                          <input type="text" class="form-control" placeholder="City" > `  
                           </div>
                           <div class="col-sm-5"> 
                             <input type="text" class="form-control" placeholder="Country" > 
                           </div>
-                           </div>
-                     <label style="font-size: medium;">Password</label>
-                      <input type="password" class="form-control" placeholder="Enter Password" >
-                      <label style="font-size: medium;">Repeat password</label>
-                      <input type="password" class="form-control" placeholder="Enter repeted password" >
+                    </div>
+                  </div>  -->
+               
+                    <div class="row">
+                      <div class="col-sm-9">  <input type="text" class="form-control" placeholder="offices"   >   </div>
+                       <div class="col-sm-2"><button type="button" class="btn btn-secondary"> add</button> </div>
+                    </div>
+                   
+                      <div> 
+
+                      </div>
+                      <label style="font-size: medium;">Position </label>
+                      <div class="row">
+                        <div class="col-sm-9">  <input type="text" class="form-control" placeholder="position"   >   </div> <div class="col-sm-2"><button type="button" class="btn btn-secondary"> add</button> </div>
+                      </div>
+                     
+                        <div> 
+  
+                        </div>
+                        <label style="font-size: medium;">Description </label>  
+                        <textarea class="form-control"> </textarea>
+                   
+                     
+                     
+                     
+                     
+                      <div class="row" style="margin-top: 1rem;">
+                        <div class="col-sm-3"><label style="font-size: medium;" > Logo</label> </div>
+                        <div class="col-sm-3"><input type="file" >  </div>
+                         </div>
+                         
+                
             </div>
   
         </div>

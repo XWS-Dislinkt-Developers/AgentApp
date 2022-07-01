@@ -11,6 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavBarProfileComponent } from './components/nav-bar-profile/nav-bar-profile.component';
 import { JobsComponent } from './jobs/jobs.component';
+import { MyCompaniesComponent } from './my-companies/my-companies.component';
+import { CompanyComponent } from './company/company.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { JobsComponent } from './jobs/jobs.component';
     ProfileComponent,
     NavBarComponent,
     NavBarProfileComponent,
-    JobsComponent
+    JobsComponent,
+    MyCompaniesComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
