@@ -16,7 +16,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "auth")
@@ -68,7 +67,7 @@ public class AuthentificationController {
            return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @RequestMapping(value="/addAdmin", method = {RequestMethod.POST })
     public ResponseEntity<HttpStatus> addAdmin(@RequestBody UserRequest userRequest){
         User existUser = this.userService.findByEmail(userRequest.getEmail());
