@@ -23,6 +23,20 @@ public class CommentService {
     public void save(CommentNewDTO comment){
         Company company = this.companyService.getCompany(comment.getCompanyId());
         this.commentRepository.save(new Comment(company, comment.getPosition(), comment.isCurrentlyEmployed(), comment.getPositive(), comment.getNegative(), comment.getProjects(), comment.getGrade(), comment.getLevelOfExperience(), comment.getEngagement(), comment.getTitle()));
+        this.updateGrade(company);
+    }
+
+    private void updateGrade(Company company) {
+        double sum = 0;
+        double br = 0;
+        double grade = 0;
+        for (Comment comment : this.commentRepository.commentsForCompany(company.getId())){
+            sum = sum + comment.getGrade();
+            br = br + 1;
+        }
+        grade = sum / br;
+        company.setGrade(grade);
+        this.companyService.save(company);
     }
 
     public List<Comment> commentsForCompany(int id){

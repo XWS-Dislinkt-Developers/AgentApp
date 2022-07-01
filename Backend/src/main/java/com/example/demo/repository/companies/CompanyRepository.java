@@ -20,4 +20,5 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
     List<Company> findAll();
     @Query(value = "select distinct c from Company c join fetch c.companyOwner o where o.email = ?1")
     Company findByOwner(String email);
+
 }
