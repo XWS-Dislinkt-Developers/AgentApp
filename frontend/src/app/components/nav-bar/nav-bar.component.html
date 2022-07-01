@@ -31,16 +31,16 @@
         <div class="modal-body">
             <div class="form">
                       <label style="font-size: medium;">Username</label>
-                     <input type="text" class="form-control" placeholder="Enter Username" > 
+                     <input type="text" name="username" class="form-control" placeholder="Enter Username" [(ngModel)]="username" > 
                  
                       <label style="font-size: medium;">Password</label>
-                      <input type="password" class="form-control" placeholder="Enter Password" >
+                      <input type="password" name="password" class="form-control" placeholder="Enter Password"  [(ngModel)]="password" >
                     
             </div>
   
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="logIn(username, password)" >Confirm</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -58,42 +58,42 @@
         <div class="modal-body">
             <div class="form">
               <label style="font-size: medium;">Name</label>
-              <input type="text" class="form-control" placeholder="Enter Name" > 
+              <input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]="user.name" > 
           
                <label style="font-size: medium;">Surname</label>
-               <input type="text" class="form-control" placeholder="Enter surname" >
+               <input type="text" class="form-control" placeholder="Enter surname" [(ngModel)]="user.surname">
 
                       <label style="font-size: medium;">Email</label>
-                     <input type="text" class="form-control" placeholder="Enter email" > 
+                     <input type="text" class="form-control" placeholder="Enter email" [(ngModel)]="user.email"> 
                      <label style="font-size: medium;">Telephone</label>
-                     <input type="text" class="form-control" placeholder="Enter telephone" > 
+                     <input type="text" class="form-control" placeholder="Enter telephone" [(ngModel)]="user.telephone"> 
                      
                       <label style="font-size: medium;">Address</label>
                       <div class="row">
                         <div class="col-sm-7"> 
-                        <input type="text" class="form-control" placeholder="Street" > 
+                        <input type="text" class="form-control" placeholder="Street"  [(ngModel)]="user.street"> 
                         </div>
                         <div class="col-sm-5"> 
-                          <input type="text" class="form-control" placeholder="Number" > 
+                          <input type="text" class="form-control" placeholder="Number"  [(ngModel)]="user.number"> 
                         </div>
                          </div>
                          <div class="row">
                           <div class="col-sm-7"> 
-                          <input type="text" class="form-control" placeholder="City" > 
+                          <input type="text" class="form-control" placeholder="City" [(ngModel)]="user.city" > 
                           </div>
                           <div class="col-sm-5"> 
-                            <input type="text" class="form-control" placeholder="Country" > 
+                            <input type="text" class="form-control" placeholder="Country"  [(ngModel)]="user.country" > 
                           </div>
                            </div>
                      <label style="font-size: medium;">Password</label>
-                      <input type="password" class="form-control" placeholder="Enter Password" >
+                      <input type="password" class="form-control" placeholder="Enter Password"   [(ngModel)]="user.password">
                       <label style="font-size: medium;">Repeat password</label>
-                      <input type="password" class="form-control" placeholder="Enter repeted password" >
+                      <input type="password" class="form-control" placeholder="Enter repeted password"  >
             </div>
   
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="registration(user)"  >Confirm</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
