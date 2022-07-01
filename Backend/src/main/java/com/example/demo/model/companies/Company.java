@@ -10,7 +10,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -57,13 +56,14 @@ public class Company {
 
     public Company() {}
 
-    public Company(String name, String yearOfOpening, List<String> offices, User companyOwner, String description, List<String> positions) {
+    public Company(String name, String yearOfOpening, List<String> offices, User companyOwner, String description, List<String> positions, String numberOfEmployees) {
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.offices = offices;
         this.companyOwner = companyOwner;
         this.description = description;
         this.positions = positions;
+        this.numberOfEmployees = numberOfEmployees;
     }
 
     public int getId() {
@@ -163,4 +163,12 @@ public class Company {
     public String getLogoImage() { return logoImage; }
 
     public void setLogoImage(String logoImage) { this.logoImage = logoImage; }
+
+    public String getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(String numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
+    }
 }

@@ -8,14 +8,16 @@ public class CompanyRequestViewDTO {
     private String name;
     private String yearOfOpening;
     private String description;
+    private String numberOfEmployees;
 
     public CompanyRequestViewDTO() {}
 
-    public CompanyRequestViewDTO(int id, String name, String yearOfOpening, String description) {
+    public CompanyRequestViewDTO(int id, String name, String yearOfOpening, String description, String numberOfEmployees) {
         this.id = id;
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.description = description;
+        this.numberOfEmployees = numberOfEmployees;
     }
 
     public int getId() {
@@ -48,5 +50,13 @@ public class CompanyRequestViewDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(String numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
     }
 }

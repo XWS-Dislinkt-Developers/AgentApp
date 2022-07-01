@@ -12,10 +12,11 @@ public class CompanyChangeDTO {
     private List<String> positions;
     private double grade;
     private String logoImage;
+    private String numberOfEmployees;
 
     public CompanyChangeDTO() {}
 
-    public CompanyChangeDTO(int id, String name, String yearOfOpening, String description, List<String> offices, List<String> positions, double grade, String logoImage) {
+    public CompanyChangeDTO(int id, String name, String yearOfOpening, String description, List<String> offices, List<String> positions, double grade, String logoImage, String numberOfEmployees) {
         this.id = id;
         this.name = name;
         this.yearOfOpening = yearOfOpening;
@@ -24,6 +25,7 @@ public class CompanyChangeDTO {
         this.positions = positions;
         this.grade = grade;
         this.logoImage = logoImage;
+        this.numberOfEmployees = numberOfEmployees;
     }
 
     public int getId() {
@@ -88,5 +90,13 @@ public class CompanyChangeDTO {
 
     public void setLogoImage(String logoImage) {
         this.logoImage = logoImage;
+    }
+
+    public String getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(String numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
     }
 }

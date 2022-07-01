@@ -5,7 +5,6 @@ import com.example.demo.model.companies.CompanyRegistrationRequest;
 import com.example.demo.model.users.User;
 import com.example.demo.repository.companies.CompanyRepository;
 import com.example.demo.repository.companies.CompanyRequestRepository;
-import com.example.demo.repository.users.UserRepository;
 import com.example.demo.service.users.UserService;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +34,7 @@ public class CompanyRequestService {
     public void approveRequest(int id) {
         CompanyRegistrationRequest request = this.companyRequestRepository.findById(id);
         User user =  userService.setUserToCompanyOwner(request.getCompanyOwner());
-        this.companyRepository.save(new Company(request.getName(), request.getYearOfOpening(), request.getOffices(), user, request.getDescription(), request.getPositions()));
+        this.companyRepository.save(new Company(request.getName(), request.getYearOfOpening(), request.getOffices(), user, request.getDescription(), request.getPositions(), request.getNumberOfEmployees()));
         this.companyRequestRepository.delete(request);
     }
 }

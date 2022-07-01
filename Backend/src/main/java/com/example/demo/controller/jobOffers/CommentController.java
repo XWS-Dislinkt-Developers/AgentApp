@@ -25,7 +25,7 @@ public class CommentController {
     @PostMapping(value = "/save")
     public ResponseEntity<HttpStatus> save(@RequestBody CommentNewDTO commentNewDTO){
         this.commentService.save(commentNewDTO);
-        return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/getComments/{id}")
@@ -36,7 +36,7 @@ public class CommentController {
             ret.add(new CommentDTO(comment));
         }
 
-        return new ResponseEntity<List<CommentDTO>>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
 }

@@ -11,12 +11,13 @@ public class CompanyDTO {
     private List<String> offices;
     private double grade;
     private String logoImage;
+    private String numberOfEmployees;
 
     public CompanyDTO(){
 
     }
 
-    public CompanyDTO(int id, String name, String yearOfOpening, String description, List<String> offices, double grade, String logoImage) {
+    public CompanyDTO(int id, String name, String yearOfOpening, String description, List<String> offices, double grade, String logoImage, String numberOfEmployees) {
         this.id = id;
         this.name = name;
         this.yearOfOpening = yearOfOpening;
@@ -24,6 +25,7 @@ public class CompanyDTO {
         this.offices = offices;
         this.grade = grade;
         this.logoImage = logoImage;
+        this.numberOfEmployees = numberOfEmployees;
     }
 
     public int getId() {

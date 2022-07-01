@@ -41,10 +41,10 @@ public class CompanyRequestController {
         ArrayList<CompanyRequestViewDTO> ret = new ArrayList<>();
 
         for (CompanyRegistrationRequest request : this.companyRequestService.getAll()){
-            ret.add(new CompanyRequestViewDTO(request.getId(),request.getName(), request.getDescription(),request.getYearOfOpening()));
+            ret.add(new CompanyRequestViewDTO(request.getId(),request.getName(), request.getDescription(),request.getYearOfOpening(), request.getNumberOfEmployees()));
         }
 
-        return new ResponseEntity<List<CompanyRequestViewDTO>>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")

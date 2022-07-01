@@ -27,10 +27,10 @@ public class CompanyController {
         ArrayList<CompanyDTO> ret = new ArrayList<>();
 
         for (Company company : this.companyService.getCompanies(search.getSearchParam())){
-            ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()));
+            ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage(), company.getNumberOfEmployees()));
         }
 
-        return new ResponseEntity<List<CompanyDTO>>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @PostMapping(value = "/searchNameAndOffice")
@@ -38,23 +38,23 @@ public class CompanyController {
         ArrayList<CompanyDTO> ret = new ArrayList<>();
 
         for (Company company : this.companyService.getCompaniesFullSearch(search.getSearchParam())){
-            ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()));
+            ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage(), company.getNumberOfEmployees()));
         }
 
-        return new ResponseEntity<List<CompanyDTO>>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<CompanyDTO> getCompany(@PathVariable int id){
         Company company = this.companyService.getCompany(id);
-        return new ResponseEntity<CompanyDTO>(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()), HttpStatus.OK);
+        return new ResponseEntity<>(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage(), company.getNumberOfEmployees()), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('COMPANY_OWNER')")
     @PutMapping(value = "/changeCompany")
     public ResponseEntity<CompanyDTO> changeCompany(@RequestBody CompanyChangeDTO companyDTO){
         Company company = this.companyService.changeCompany(companyDTO);
-        return new ResponseEntity<CompanyDTO>(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()), HttpStatus.OK);
+        return new ResponseEntity<>(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage(), company.getNumberOfEmployees()), HttpStatus.OK);
     }
 
     @GetMapping(value = "/getAll")
@@ -62,9 +62,9 @@ public class CompanyController {
         ArrayList<CompanyDTO> ret = new ArrayList<>();
 
         for (Company company : this.companyService.findAll()){
-            ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage()));
+            ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage(), company.getNumberOfEmployees()));
         }
 
-        return new ResponseEntity<List<CompanyDTO>>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 }

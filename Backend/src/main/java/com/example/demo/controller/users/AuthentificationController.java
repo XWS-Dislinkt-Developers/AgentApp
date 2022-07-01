@@ -59,7 +59,7 @@ public class AuthentificationController {
     public ResponseEntity<HttpStatus> addUser(@RequestBody UserRequest userRequest){
         User existUser = this.userService.findByEmail(userRequest.getEmail());
            if (existUser != null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
            }
            userService.save(userRequest);
            return new ResponseEntity<>(HttpStatus.CREATED);

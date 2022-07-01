@@ -9,14 +9,16 @@ public class CompanyRequestDTO {
     private List<String> offices;
     private String description;
     private List<String> positions;
+    private String numberOfEmployees;
 
     public CompanyRequestDTO() {}
 
-    public CompanyRequestDTO(String name, String yearOfOpening, List<String> offices, String description) {
+    public CompanyRequestDTO(String name, String yearOfOpening, List<String> offices, String description, String numberOfEmployees) {
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.offices = offices;
         this.description = description;
+        this.numberOfEmployees = numberOfEmployees;
     }
 
     public String getName() {
@@ -57,5 +59,13 @@ public class CompanyRequestDTO {
 
     public void setPositions(List<String> positions) {
         this.positions = positions;
+    }
+
+    public String getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(String numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
     }
 }

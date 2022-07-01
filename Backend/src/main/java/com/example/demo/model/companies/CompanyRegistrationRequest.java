@@ -28,16 +28,19 @@ public class CompanyRegistrationRequest {
     private String description;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private User companyOwner;
+    @Column
+    private String numberOfEmployees;
 
     public CompanyRegistrationRequest() {}
 
-    public CompanyRegistrationRequest(String name, String yearOfOpening, List<String> offices, String description, User companyOwner, List<String> positions) {
+    public CompanyRegistrationRequest(String name, String yearOfOpening, List<String> offices, String description, User companyOwner, List<String> positions, String numberOfEmployees) {
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.offices = offices;
         this.description = description;
         this.companyOwner = companyOwner;
         this.positions = positions;
+        this.numberOfEmployees = numberOfEmployees;
     }
 
     public CompanyRegistrationRequest(CompanyRequestDTO companyRequestDTO, User user) {
@@ -46,6 +49,7 @@ public class CompanyRegistrationRequest {
         this.offices = companyRequestDTO.getOffices();
         this.description = companyRequestDTO.getDescription();
         this.companyOwner = user;
+        this.numberOfEmployees = companyRequestDTO.getNumberOfEmployees();
     }
 
     public int getId() {
@@ -102,5 +106,13 @@ public class CompanyRegistrationRequest {
 
     public void setPositions(List<String> positions) {
         this.positions = positions;
+    }
+
+    public String getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(String numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
     }
 }
