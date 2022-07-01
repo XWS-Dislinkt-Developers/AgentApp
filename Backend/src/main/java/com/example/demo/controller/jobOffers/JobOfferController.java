@@ -1,9 +1,7 @@
 package com.example.demo.controller.jobOffers;
 
-import com.example.demo.dto.companies.CompanyDTO;
 import com.example.demo.dto.companies.CompanySearchDTO;
 import com.example.demo.dto.jobOffers.JobOfferDTO;
-import com.example.demo.model.companies.Company;
 import com.example.demo.model.jobOffers.JobOffer;
 import com.example.demo.model.users.User;
 import com.example.demo.service.jobOffers.JobOfferService;
@@ -36,7 +34,7 @@ public class JobOfferController {
             ret.add(new JobOfferDTO(jobOffer.getPosition(), jobOffer.getLevelOfExperience(), jobOffer.getJobDescription(), jobOffer.getDailyActivities(), jobOffer.getRequirements(), jobOffer.getPromoteOnDislinkt(), jobOffer.getBenefits(), jobOffer.getExpires()));
         }
 
-        return new ResponseEntity<List<JobOfferDTO>>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('COMPANY_OWNER')")
@@ -45,7 +43,7 @@ public class JobOfferController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User)authentication.getPrincipal();
         this.jobOfferService.save(new JobOffer(jobOfferDTO), user);
-        return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/search")
@@ -56,7 +54,7 @@ public class JobOfferController {
             ret.add(new JobOfferDTO(jobOffer.getPosition(), jobOffer.getLevelOfExperience(), jobOffer.getJobDescription(), jobOffer.getDailyActivities(), jobOffer.getRequirements(), jobOffer.getPromoteOnDislinkt(), jobOffer.getBenefits(), jobOffer.getExpires()));
         }
 
-        return new ResponseEntity<List<JobOfferDTO>>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @GetMapping(value = "/getForCompany/{id}")
@@ -67,6 +65,6 @@ public class JobOfferController {
             ret.add(new JobOfferDTO(jobOffer.getPosition(), jobOffer.getLevelOfExperience(), jobOffer.getJobDescription(), jobOffer.getDailyActivities(), jobOffer.getRequirements(), jobOffer.getPromoteOnDislinkt(), jobOffer.getBenefits(), jobOffer.getExpires()));
         }
 
-        return new ResponseEntity<List<JobOfferDTO>>(ret, HttpStatus.OK);
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 }

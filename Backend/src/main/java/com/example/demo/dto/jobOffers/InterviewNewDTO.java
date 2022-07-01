@@ -1,43 +1,23 @@
-package com.example.demo.model.jobOffers;
+package com.example.demo.dto.jobOffers;
 
 import com.example.demo.enums.InterviewDifficulty;
 import com.example.demo.enums.OfferStatus;
-import com.example.demo.model.companies.Company;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
+public class InterviewNewDTO {
 
-@Entity
-public class Interview {
-
-    @Id
-    @SequenceGenerator(name = "interviewSeqGen", sequenceName = "interviewSeqGen", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "interviewSeqGen")
-    @Column(name="id", unique=true, nullable=false)
-    private int id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
-    @JsonIgnoreProperties("interviews")
-    private Company company;
-    @Column
+    private int idCompany;
     private String yearOfInterview;
-    @Column
     private String position;
-    @Column
     private String HRInterview;
-    @Column
     private String technicalInterview;
-    @Column
     private String title;
-    @Column
     private InterviewDifficulty interviewDifficulty;
-    @Column
     private OfferStatus offerStatus;
 
-    public Interview() {}
+    public InterviewNewDTO(){}
 
-    public Interview(Company company, String yearOfInterview, String position, String HRInterview, String technicalInterview, String title, InterviewDifficulty interviewDifficulty, OfferStatus offerStatus) {
-        this.company = company;
+    public InterviewNewDTO(int idCompany, String yearOfInterview, String position, String HRInterview, String technicalInterview, String title, InterviewDifficulty interviewDifficulty, OfferStatus offerStatus) {
+        this.idCompany = idCompany;
         this.yearOfInterview = yearOfInterview;
         this.position = position;
         this.HRInterview = HRInterview;
@@ -47,30 +27,12 @@ public class Interview {
         this.offerStatus = offerStatus;
     }
 
-    public Interview(String yearOfInterview, String position, String HRInterview, String technicalInterview, String title, InterviewDifficulty interviewDifficulty, OfferStatus offerStatus) {
-        this.yearOfInterview = yearOfInterview;
-        this.position = position;
-        this.HRInterview = HRInterview;
-        this.technicalInterview = technicalInterview;
-        this.title = title;
-        this.interviewDifficulty = interviewDifficulty;
-        this.offerStatus = offerStatus;
+    public int getIdCompany() {
+        return idCompany;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setIdCompany(int idCompany) {
+        this.idCompany = idCompany;
     }
 
     public String getYearOfInterview() {

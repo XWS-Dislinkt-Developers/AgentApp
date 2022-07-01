@@ -1,49 +1,23 @@
-package com.example.demo.model.jobOffers;
+package com.example.demo.dto.jobOffers;
 
 import com.example.demo.enums.Engagement;
 import com.example.demo.enums.LevelOfExperience;
-import com.example.demo.model.companies.Company;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-public class SalaryAndBenefits {
+public class SalaryAndBenefitsDTO {
 
-    @Id
-    @SequenceGenerator(name = "salarySeqGen", sequenceName = "salarySeqGen", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "salarySeqGen")
-    @Column(name="id", unique=true, nullable=false)
     private int id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
-    @JsonIgnoreProperties("salaryAndBenefits")
-    private Company company;
-    @Column
     private String position;
-    @Column
     private double salary;
-    @ElementCollection
-    @Column
     private List<String> benefits;
-    @Column
     private LevelOfExperience levelOfExperience;
-    @Column
     private Engagement engagement;
 
-    public SalaryAndBenefits() {}
+    public SalaryAndBenefitsDTO(){}
 
-    public SalaryAndBenefits(Company company, String position, double salary, List<String> benefits, LevelOfExperience levelOfExperience, Engagement engagement) {
-        this.company = company;
-        this.position = position;
-        this.salary = salary;
-        this.benefits = benefits;
-        this.levelOfExperience = levelOfExperience;
-        this.engagement = engagement;
-    }
-
-    public SalaryAndBenefits(String position, double salary, List<String> benefits, LevelOfExperience levelOfExperience, Engagement engagement) {
+    public SalaryAndBenefitsDTO(int id, String position, double salary, List<String> benefits, LevelOfExperience levelOfExperience, Engagement engagement) {
+        this.id = id;
         this.position = position;
         this.salary = salary;
         this.benefits = benefits;
@@ -57,14 +31,6 @@ public class SalaryAndBenefits {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
     }
 
     public String getPosition() {

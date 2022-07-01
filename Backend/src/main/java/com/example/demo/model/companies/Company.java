@@ -38,6 +38,8 @@ public class Company {
     @Column
     private double grade;
     @Column
+    private String numberOfEmployees;
+    @Column
     private String logoImage;
     @OneToMany(mappedBy= "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("company")
