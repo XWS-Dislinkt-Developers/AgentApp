@@ -30,7 +30,7 @@
 .logo{
     font-size: 44px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-right: 35%;
+    margin-right: 30%;
     color: black;
 }
 
@@ -43,11 +43,7 @@
     margin-left: 3rem;
     margin-right: 3rem;
 }
-.background-image{
-    width: 100%;
-    height: 100%;
-    background-image: url("../../assets/background.jpg");
-}
+
 
 .card-container {
     display: flex;
@@ -112,3 +108,60 @@
   .row{
     margin-bottom: 1.5rem;
   }
+
+  .rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 30px;
+    font-weight: 300;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+
+.buttons{
+	top: 36px;
+    position: relative;
+}
+
+
+.rating-submit{
+	border-radius: 15px;
+	color: #fff;
+	    height: 49px;
+}
+
+
+.rating-submit:hover{
+	
+	color: #fff;
+}

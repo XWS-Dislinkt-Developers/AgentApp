@@ -1,123 +1,31 @@
 <div> 
-<div class="menu" > 
-    <nav class="nav nav-pills nav-justified">
-        <a class="nav-link  logoImg"  > <img class="logoImg" src="../../favicon.ico"> </a>
-        <a class="nav-link  logo"  href=""  style="list-style-type: none ;"> Jobby</a>
-       
-        <a class="nav-link links" href="companies" >Companies </a>
-        <a class="nav-link links" data-toggle="modal" data-target="#registration" href="#">Registration </a>
-        <a class="nav-link linkSign" data-toggle="modal" data-target="#signIn" href="#" style="margin-bottom: 1rem; color: white">Sign in  </a>
-    
-      </nav>
+  <app-nav-bar></app-nav-bar>
 
 </div>
 
-<div> 
+<div > 
   <img class="background-image"   src="../../assets/background.jpg">
 
-  <div class="card-container" style="margin-top: -40rem;">
-    <a class="card" target="_blank" rel="noopener" >
+  <div class="card-container" style="margin-top: -33rem;">
+    <a class="card" target="_blank" rel="noopener" href="https://www.dream-job.eu/en/home" style="background: transparent">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"></svg>
-       <span> <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:rgb(0, 128, 255); margin-top: 1rem;">Find</p></span>
+       <span> <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:rgb(0, 128, 255); margin-top: 1rem;font-size: 20px;" >Find</p></span>
       
    </a>
 
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
+    <a class="card" target="_blank" rel="noopener" href="https://www.skillshare.com/" style="background: transparent">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"></svg>
      
-      <span> <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:rgb(0, 128, 255); margin-top: 1rem;">Learn</p></span>
+      <span> <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:rgb(0, 128, 255); margin-top: 1rem; font-size: 20px;">Learn</p></span>
       
     </a>
 
-    <a class="card" target="_blank" rel="noopener" href="https://blog.angular.io/">
+    <a class="card" target="_blank" rel="noopener" href="https://www.forbes.com/sites/allbusiness/2017/03/31/10-essential-steps-to-prepare-yourself-for-a-job-interview/" style="background: transparent">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"></svg>
-      <span><p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:rgb(0, 128, 255); margin-top: 1rem;">Prepare yourself</p></span>
+      <span><p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:rgb(0, 128, 255); margin-top: 1rem; font-size: 20px;">Prepare yourself</p></span>
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"></svg>
     </a>
 
 
   </div>
-
-</div>
-
-<div id="signIn" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Sign in</h4>
-      </div>
-      <div class="modal-body">
-          <div class="form">
-                    <label style="font-size: medium;">Username</label>
-                   <input type="text" class="form-control" placeholder="Enter Username" > 
-               
-                    <label style="font-size: medium;">Password</label>
-                    <input type="password" class="form-control" placeholder="Enter Password" >
-                  
-          </div>
-
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  <div id="registration" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-  
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Register</h4>
-        </div>
-        <div class="modal-body">
-            <div class="form">
-              <label style="font-size: medium;">Name</label>
-              <input type="text" class="form-control" placeholder="Enter Name" > 
-          
-               <label style="font-size: medium;">Surname</label>
-               <input type="text" class="form-control" placeholder="Enter surname" >
-
-                      <label style="font-size: medium;">Email</label>
-                     <input type="text" class="form-control" placeholder="Enter email" > 
-                     <label style="font-size: medium;">Telephone</label>
-                     <input type="text" class="form-control" placeholder="Enter telephone" > 
-                     
-                      <label style="font-size: medium;">Address</label>
-                      <div class="row">
-                        <div class="col-sm-7"> 
-                        <input type="text" class="form-control" placeholder="Street" > 
-                        </div>
-                        <div class="col-sm-5"> 
-                          <input type="text" class="form-control" placeholder="Number" > 
-                        </div>
-                         </div>
-                         <div class="row">
-                          <div class="col-sm-7"> 
-                          <input type="text" class="form-control" placeholder="City" > 
-                          </div>
-                          <div class="col-sm-5"> 
-                            <input type="text" class="form-control" placeholder="Country" > 
-                          </div>
-                           </div>
-                     <label style="font-size: medium;">Password</label>
-                      <input type="password" class="form-control" placeholder="Enter Password" >
-                      <label style="font-size: medium;">Repeat password</label>
-                      <input type="password" class="form-control" placeholder="Enter repeted password" >
-            </div>
-  
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-</div>
-
-
 </div>
