@@ -12,14 +12,14 @@ public class JobOfferDTO {
     private LevelOfExperience levelOfExperience;
     private String jobDescription;
     private String dailyActivities;
-    private String requirements;
+    private List<String> requirements;
     private Boolean promoteOnDislinkt;
     private List<String> benefits;
     private Date expires;
 
     public JobOfferDTO() {}
 
-    public JobOfferDTO(String position, LevelOfExperience levelOfExperience, String jobDescription, String dailyActivities, String requirements, Boolean promoteOnDislinkt, List<String> benefits, Date expires) {
+    public JobOfferDTO(String position, LevelOfExperience levelOfExperience, String jobDescription, String dailyActivities, List<String> requirements, Boolean promoteOnDislinkt, List<String> benefits, Date expires) {
         this.position = position;
         this.levelOfExperience = levelOfExperience;
         this.jobDescription = jobDescription;
@@ -70,11 +70,11 @@ public class JobOfferDTO {
         this.dailyActivities = dailyActivities;
     }
 
-    public String getRequirements() {
+    public List<String> getRequirements() {
         return requirements;
     }
 
-    public void setRequirements(String requirements) {
+    public void setRequirements(List<String> requirements) {
         this.requirements = requirements;
     }
 

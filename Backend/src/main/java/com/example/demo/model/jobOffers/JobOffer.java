@@ -30,7 +30,8 @@ public class JobOffer {
     @Column
     private String dailyActivities;
     @Column
-    private String requirements;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> requirements;
     @Column
     private Boolean promoteOnDislinkt;
     @Column
@@ -41,7 +42,7 @@ public class JobOffer {
 
     public JobOffer() {}
 
-    public JobOffer(Company company, String position, LevelOfExperience levelOfExperience, String jobDescription, String dailyActivities, String requirements, Boolean promoteOnDislinkt, List<String> benefits, Date expires) {
+    public JobOffer(Company company, String position, LevelOfExperience levelOfExperience, String jobDescription, String dailyActivities, List<String> requirements, Boolean promoteOnDislinkt, List<String> benefits, Date expires) {
         this.company = company;
         this.position = position;
         this.levelOfExperience = levelOfExperience;
@@ -112,11 +113,11 @@ public class JobOffer {
         this.dailyActivities = dailyActivities;
     }
 
-    public String getRequirements() {
+    public List<String> getRequirements() {
         return requirements;
     }
 
-    public void setRequirements(String requirements) {
+    public void setRequirements(List<String> requirements) {
         this.requirements = requirements;
     }
 
