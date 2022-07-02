@@ -83,4 +83,20 @@ public class CompanyDTO {
     public void setLogoImage(String logoImage) {
         this.logoImage = logoImage;
     }
+
+    public List<String> getOffices() {
+        return offices;
+    }
+
+    public void setOffices(List<String> offices) {
+        this.offices = offices;
+    }
+
+    public String getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    public void setNumberOfEmployees(String numberOfEmployees) {
+        this.numberOfEmployees = numberOfEmployees;
+    }
 }
