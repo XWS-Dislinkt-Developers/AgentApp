@@ -18,6 +18,8 @@ public class CompanyRegistrationRequest {
     private String name;
     @Column
     private String yearOfOpening;
+    @Column(name="logo", length = 10485760)
+    private String logo;
     @ElementCollection(fetch = FetchType.LAZY)
     @Column
     private List<String> offices;
@@ -26,14 +28,15 @@ public class CompanyRegistrationRequest {
     private List<String> positions;
     @Column
     private String description;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private User companyOwner;
     @Column
     private String numberOfEmployees;
 
     public CompanyRegistrationRequest() {}
 
-    public CompanyRegistrationRequest(String name, String yearOfOpening, List<String> offices, String description, User companyOwner, List<String> positions, String numberOfEmployees) {
+    public CompanyRegistrationRequest(String logo, String name, String yearOfOpening, List<String> offices, String description, User companyOwner, List<String> positions, String numberOfEmployees) {
+        this.logo = logo;
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.offices = offices;
@@ -44,9 +47,11 @@ public class CompanyRegistrationRequest {
     }
 
     public CompanyRegistrationRequest(CompanyRequestDTO companyRequestDTO, User user) {
+        this.logo = companyRequestDTO.getLogo();
         this.name = companyRequestDTO.getName();
         this.yearOfOpening = companyRequestDTO.getYearOfOpening();
         this.offices = companyRequestDTO.getOffices();
+        this.positions = companyRequestDTO.getPositions();
         this.description = companyRequestDTO.getDescription();
         this.companyOwner = user;
         this.numberOfEmployees = companyRequestDTO.getNumberOfEmployees();
@@ -114,5 +119,13 @@ public class CompanyRegistrationRequest {
 
     public void setNumberOfEmployees(String numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

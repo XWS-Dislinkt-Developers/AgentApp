@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CompanyRequestDTO {
 
+    private String logo;
     private String name;
     private String yearOfOpening;
     private List<String> offices;
@@ -13,12 +14,22 @@ public class CompanyRequestDTO {
 
     public CompanyRequestDTO() {}
 
-    public CompanyRequestDTO(String name, String yearOfOpening, List<String> offices, String description, String numberOfEmployees) {
+    public CompanyRequestDTO(String logo, String name, String yearOfOpening, List<String> offices, List<String> positions, String description, String numberOfEmployees) {
+       this.logo = logo;
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.offices = offices;
         this.description = description;
         this.numberOfEmployees = numberOfEmployees;
+        this.positions = positions;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public String getName() {

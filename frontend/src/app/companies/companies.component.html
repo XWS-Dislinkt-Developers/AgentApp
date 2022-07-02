@@ -1,6 +1,10 @@
-
-<div> 
+<div *ngIf="anonymous"> 
   <app-nav-bar></app-nav-bar>
+</div>
+<div *ngIf="!anonymous"> 
+<app-nav-bar-profile></app-nav-bar-profile>
+</div>
+<div> 
 
 
     <div class="title">

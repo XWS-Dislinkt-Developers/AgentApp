@@ -17,7 +17,7 @@ export class NavBarComponent implements OnInit {
     street: '',
     country: '',
     city: '',
-    role: '',
+    role: 'ROLE_USER',
     number: '',
     telephone: '',
     surname: ''
@@ -34,8 +34,6 @@ export class NavBarComponent implements OnInit {
   registration(user: IUser){
     this.authService.register(user)
   }
-  signOut(){
-    this.authService.signOut()
-  }
+
 
 }

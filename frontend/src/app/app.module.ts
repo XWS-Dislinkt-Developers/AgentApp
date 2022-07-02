@@ -14,6 +14,7 @@ import { NavBarProfileComponent } from './components/nav-bar-profile/nav-bar-pro
 import { JobsComponent } from './jobs/jobs.component';
 import { MyCompaniesComponent } from './my-companies/my-companies.component';
 import { CompanyComponent } from './company/company.component';
+import { RequestsComponent } from './requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CompanyComponent } from './company/company.component';
     NavBarProfileComponent,
     JobsComponent,
     MyCompaniesComponent,
-    CompanyComponent
+    CompanyComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,

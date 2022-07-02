@@ -12,9 +12,10 @@
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#interview">Interview</a>
         </div>
         <a class="nav-link links" href="companies" >Companies </a>
-        <a class="nav-link links" href="my-company" >My company </a>
+        <a class="nav-link links" href="my-company" *ngIf="!admin" >My company </a>
+        <a class="nav-link links" href="requests" *ngIf="admin" >Company requests </a>
         <a class="nav-link links"  href="jobs">Jobs </a>
-        <a class="nav-link links" data-toggle="modal" data-target="#create" href="#"> Register company </a>
+        <a class="nav-link links" data-toggle="modal" data-target="#create" href="#" *ngIf="!admin"> Register company </a>
         <a class="nav-link linkSign" (click)="signOut()"  style="margin-bottom: 1rem; color: white; background-color: dimgrey;">Sign out  </a>
     
       </nav>
@@ -33,10 +34,12 @@
         <div class="modal-body">
             <div class="form">
               <label style="font-size: medium;">Name</label>
-              <input type="text" class="form-control" placeholder="Enter Name" > 
+              <input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]="request.name" > 
           
                <label style="font-size: medium;">Year of opening</label>
-               <input type="number" class="form-control" placeholder="Enter year" >
+               <input type="number" class="form-control" placeholder="Enter year" [(ngModel)]="request.yearOfOpening" >
+               <label style="font-size: medium;">Number of employees</label>
+               <input type="number" class="form-control" placeholder="Enter number" [(ngModel)]="request.numberOfEmployees" >
 
                <label style="font-size: medium;">Offices </label>
                
@@ -60,23 +63,25 @@
                   </div>  -->
                
                     <div class="row">
-                      <div class="col-sm-9">  <input type="text" class="form-control" placeholder="offices"   >   </div>
-                       <div class="col-sm-2"><button type="button" class="btn btn-secondary"> add</button> </div>
+                      <div class="col-sm-9">  <input type="text" class="form-control" placeholder="offices" [(ngModel)]="office"  >   </div>
+                       <div class="col-sm-2"><button type="button" class="btn btn-secondary" (click)="addOffice(office)"> add</button> </div>
                     </div>
                    
-                      <div> 
+                      <div *ngIf="request.offices.length != 0"> 
+                        <div  *ngFor="let officeName of request.offices" class=" row"> <p style="margin-left: 3rem ;">{{officeName}} </p></div>
 
                       </div>
                       <label style="font-size: medium;">Position </label>
                       <div class="row">
-                        <div class="col-sm-9">  <input type="text" class="form-control" placeholder="position"   >   </div> <div class="col-sm-2"><button type="button" class="btn btn-secondary"> add</button> </div>
+                        <div class="col-sm-9">  <input type="text" class="form-control" placeholder="position"  [(ngModel)]="position" >   </div> 
+                        <div class="col-sm-2"><button type="button" class="btn btn-secondary" (click)="addPosition(position)"> add</button> </div>
                       </div>
                      
-                        <div> 
-  
+                        <div *ngIf="request.positions.length != 0"> 
+                          <div  *ngFor="let positionName of request.positions" class=" row" style="margin-left: 3rem ;"> {{positionName}}</div>
                         </div>
                         <label style="font-size: medium;">Description </label>  
-                        <textarea class="form-control"> </textarea>
+                        <textarea class="form-control" [(ngModel)]="request.description" > </textarea>
                    
                      
                      
@@ -84,15 +89,21 @@
                      
                       <div class="row" style="margin-top: 1rem;">
                         <div class="col-sm-3"><label style="font-size: medium;" > Logo</label> </div>
-                        <div class="col-sm-3"><input type="file" >  </div>
-                         </div>
+                        <div class="col-sm-9"> <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control" >  </div>
+                        
+                      </div>
+                      <div class="img-space">
+                        <ng-container *ngIf="isImageSaved;">
+                          <img [src]="cardImageBase64" style="width: 100px;height:100px;" />
+                        </ng-container>
+                      </div>
                          
                 
             </div>
   
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="companyRegistration()" >Confirm</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>

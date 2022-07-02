@@ -38,7 +38,7 @@ public class Company {
     private double grade;
     @Column
     private String numberOfEmployees;
-    @Column
+    @Column( length = 10485760)
     private String logoImage;
     @OneToMany(mappedBy= "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("company")
@@ -56,7 +56,8 @@ public class Company {
 
     public Company() {}
 
-    public Company(String name, String yearOfOpening, List<String> offices, User companyOwner, String description, List<String> positions, String numberOfEmployees) {
+    public Company(String logoImage, String name, String yearOfOpening, List<String> offices, User companyOwner, String description, List<String> positions, String numberOfEmployees) {
+        this.logoImage = logoImage;
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.offices = offices;
