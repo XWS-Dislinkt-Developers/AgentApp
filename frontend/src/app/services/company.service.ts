@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ICompany } from '../model/ICompany';
 import { ICompanyRegistrationRequest } from '../model/ICompanyRegistrationRequest';
 import { ICompanyRequest } from '../model/ICompanyRequest';
 
@@ -18,8 +19,8 @@ export class CompanyService {
       Authorization: "Bearer " + localStorage.getItem("accessToken"),
     });
   }
-  getAllRequests(){
 
+  getAllRequests(){
     const loginHeaders = new HttpHeaders({
       Authorization: "Bearer " + localStorage.getItem("accessToken"),
     });
@@ -33,4 +34,9 @@ export class CompanyService {
   createCompanyRequest(request: ICompanyRequest) {
     return this._http.post('http://localhost:8081/companyRequest', request, {'headers': this.headers()})
     }
+
+  getAllCompanies(){
+    return this._http.get<Observable<ICompany>>('http://localhost:8081/company/getAll').pipe()
+  }
+
 }

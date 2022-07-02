@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ICompany } from '../model/ICompany';
+import { CompanyService } from '../services/company.service';
 
 @Component({
   selector: 'app-companies',
@@ -7,11 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompaniesComponent implements OnInit {
   anonymous: boolean = true;
+  companies: any;
 
-  constructor() { }
+  constructor(private companyService: CompanyService) { }
 
   ngOnInit(): void {
     this.whoAmI()
+    this.getAllCompanies()
   }
 checkCompany(){
   
@@ -20,6 +25,12 @@ whoAmI(){
   if(localStorage.getItem("accessToken") != null){
     this.anonymous = false;
   }
+}
+
+getAllCompanies(){
+this.companyService.getAllCompanies().subscribe( response => {
+  this.companies = response;
+})
 }
 
 }
