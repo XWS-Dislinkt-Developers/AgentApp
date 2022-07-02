@@ -38,7 +38,7 @@
          <p class="card-text">Employees: {{c.numberOfEmployees}} </p>
           <p class="card-text">{{c.description}}</p>
         </div>
-        <div class="card-footer">  <a href='company/+ c.id' class="card-link" style="margin-left: 8rem ;">Check company</a></div>
+        <div class="card-footer">  <a (click)="goToCompany(c.id)" class="card-link" style="margin-left: 8rem ;">Check company</a></div>
       </div>
      
 

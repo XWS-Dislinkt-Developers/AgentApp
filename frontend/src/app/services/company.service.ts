@@ -39,4 +39,7 @@ export class CompanyService {
     return this._http.get<Observable<ICompany>>('http://localhost:8081/company/getAll').pipe()
   }
 
+  showCompany(id: number){
+    return this._http.get<any>('http://localhost:8081/company/'+ id).pipe()
+  }
 }

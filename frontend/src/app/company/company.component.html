@@ -8,16 +8,17 @@
 
     <div class="header">
         <div class="row" >
-            <div class="col-sm-4"> <img src="../../favicon.ico" class="logo"> </div>
+            <div class="col-sm-4"> <img [src]="company.logoImage" class="logo"> </div>
             
             <div class="col-sm-7 col-info" >
                 <div class="row">
                     <div class="col-sm-5"> 
-                       <h2>Company name</h2> 
+                       <h2>{{company.name}}</h2> 
                     </div>
                  </div>
                  <div class="row">
-                    <div class="col-sm-5">  Grade </div>
+                    <div class="col-sm-5"> <span class="fa fa-star checked"></span>
+                       {{ company.grade}}</div>
                  </div>
 
              </div>
@@ -55,24 +56,24 @@
     <div id="company-info" class="container tab-pane active"> 
         <div class="row">
         <div class="col-sm-2"> <label > Company name </label> </div>    
-        <div class="col-sm-2"> <h5> imence </h5> </div>  
+        <div class="col-sm-2"> <h5> {{company.name}} </h5> </div>  
         <div class="col-sm-2"> <label > Year of opening </label> </div>    
-        <div class="col-sm-1"> <h5> 2020 </h5> </div>  
+        <div class="col-sm-1"> <h5>{{company.yearOfOpening}} </h5> </div>  
         <div class="col-sm-1"> <label >Employees </label> </div>    
-        <div class="col-sm-1"> <h5> 20-50 </h5> </div>  
-        <div class="col-sm-1"> <label > Contry </label> </div>    
-        <div class="col-sm-2"> <h5> fbndfnsnfsj </h5> </div>  
+        <div class="col-sm-1"> <h5> {{company.numberOfEmployees}} </h5> </div>  
+        <div class="col-sm-1"> <label > Offices </label> </div>    
+        <div class="col-sm-2"> <h5> {{company.offices}} </h5> </div>  
         </div>
-        <div class="row">
-            <div class="col-sm-2"> <label > Web site </label> </div>    
-            <div class="col-sm-2"> <h5>  </h5> </div>  
-            <div class="col-sm-2"> <label > Mayor office </label> </div>    
-            <div class="col-sm-1"> <h5> 2020 </h5> </div>  
-            <div class="col-sm-1"> <label >Employees </label> </div>    
-            <div class="col-sm-1"> <h5> 20-50 </h5> </div>  
-            <div class="col-sm-1"> <label > Contry </label> </div>    
-            <div class="col-sm-1"> <h5> fbndfnsnfsj </h5> </div>  
-            </div>
+      <hr/>
+
+      <div class="description"> 
+      <div class="row " style=" margin-top: 2%; ">
+      <h5> About us: </h5>  
+      </div>  
+      <div class="row">
+        <p style="font-size: 20px ; margin-top: 3%;"> {{company.description}} </p>  
+        </div>
+      </div>
         
     </div>
 
