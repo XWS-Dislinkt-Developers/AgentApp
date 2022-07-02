@@ -35,8 +35,8 @@
 }
 
 .logoImg{
-   height:60px;
-   width: 60px;
+   height:100px;
+   width: 100px;
 }
 
 .form{
@@ -56,11 +56,12 @@
 }
 
 .logo-company{
-    height: 2rem;
-    width: 2rem;
+    height: 4rem;
+    width: 4.5rem;
     
 }
 .card-group{
+    flex-wrap: wrap;
     margin-top: 2.5%;
     margin-left: 12%;
     margin-right: 12%;
