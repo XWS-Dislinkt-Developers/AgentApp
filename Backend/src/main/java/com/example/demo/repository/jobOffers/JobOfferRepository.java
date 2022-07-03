@@ -9,10 +9,10 @@ import java.util.List;
 
 @Repository
 public interface JobOfferRepository extends JpaRepository<JobOffer, Integer> {
-    @Query(value = "select distinct j from JobOffer j join fetch j.benefits b")
+    @Query(value = "select distinct j from JobOffer j left join fetch j.benefits b")
     List<JobOffer> findAll();
-    @Query(value = "select distinct j from JobOffer j join fetch j.benefits b join fetch j.company c where c.id = ?1")
+    @Query(value = "select distinct j from JobOffer j left join fetch j.benefits b join fetch j.company c where c.id = ?1")
     List<JobOffer> getJobOffersForCompany(int id);
-    @Query(value = "select distinct j from JobOffer j join fetch j.benefits b join fetch j.company c where c.name = ?1 or j.position = ?1")
+    @Query(value = "select distinct j from JobOffer j left join fetch j.benefits b join fetch j.company c where upper(c.name) like upper(?1) or upper(j.position) like upper(?1)")
     List<JobOffer> searchJobOffers(String param);
 }
