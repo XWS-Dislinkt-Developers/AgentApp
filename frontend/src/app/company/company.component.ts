@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICompany } from '../model/ICompany';
 import { CompanyService } from '../services/company.service';
+import { ImpresionsService } from '../services/impresions.service';
 
 @Component({
   selector: 'app-company',
@@ -12,7 +13,8 @@ export class CompanyComponent implements OnInit {
 anonymous: boolean= true;
 id : number =0;
   company!: ICompany;
-  constructor(private companyService: CompanyService,private route: ActivatedRoute,
+  comments: any;
+  constructor(private companyService: CompanyService,private route: ActivatedRoute, private impresionService: ImpresionsService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -24,6 +26,12 @@ id : number =0;
   showCompany(id: any){
     this.companyService.showCompany(id).subscribe(response=>{
       this.company=response;
+    })
+  }
+
+  showComments(){
+    this.impresionService.getCommentsForCompany(this.id).subscribe( results=> {
+    this.comments= results;
     })
   }
   whoAmI(){

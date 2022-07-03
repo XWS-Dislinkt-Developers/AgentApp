@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -41,5 +42,13 @@ export class CompanyService {
 
   showCompany(id: number){
     return this._http.get<any>('http://localhost:8081/company/'+ id).pipe()
+  }
+
+  searchCompany(name: string){
+    const loginHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+    return this._http.post<any>('http://localhost:8081/company/searchName', name, {headers: loginHeaders}).pipe()
   }
 }

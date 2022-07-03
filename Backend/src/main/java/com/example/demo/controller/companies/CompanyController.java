@@ -23,10 +23,10 @@ public class CompanyController {
     }
 
     @PostMapping(value = "/searchName")
-    public ResponseEntity<List<CompanyDTO>> getCompanies(@RequestBody CompanySearchDTO search){
+    public ResponseEntity<List<CompanyDTO>> getCompanies(@RequestBody String search){
         ArrayList<CompanyDTO> ret = new ArrayList<>();
 
-        for (Company company : this.companyService.getCompanies(search.getSearchParam())){
+        for (Company company : this.companyService.getCompanies(search)){
             ret.add(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage(), company.getNumberOfEmployees()));
         }
 
