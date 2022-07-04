@@ -53,4 +53,11 @@ public class CompanyRequestController {
         this.companyRequestService.approveRequest(id);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PutMapping(value = "declineRequest/{id}")
+    public ResponseEntity<HttpStatus> declineRequest(@PathVariable int id){
+        this.companyRequestService.declineRequest(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -37,4 +37,9 @@ public class CompanyRequestService {
         this.companyRepository.save(new Company(request.getName(), request.getYearOfOpening(), request.getOffices(), user, request.getDescription(), request.getPositions(), request.getNumberOfEmployees()));
         this.companyRequestRepository.delete(request);
     }
+
+    public void declineRequest(int id) {
+        CompanyRegistrationRequest request = this.companyRequestRepository.findById(id);
+        this.companyRequestRepository.delete(request);
+    }
 }
