@@ -85,7 +85,8 @@ admin: boolean = false;
   this.companyService.searchCompany(searchValue).subscribe( response => {
     this.company = response;
     this.comment.companyId = this.company[0].id;
-    this.salaryAndBenefits.companyId = this.company[0].id
+    this.salaryAndBenefits.companyId = this.company[0].id;
+    this.interview.idCompany = this.company[0].id
   })
   }
   companyRegistration(){
@@ -117,7 +118,14 @@ Swal.fire("Your comment is added", "success");
 Swal.fire("Something went wrong", "opssss...")
   })
 }
-
+setDifficulty(number: any){
+  console.log(number)
+  this.interview.interviewDifficulty = number
+}
+setStatus(number: any){
+  console.log(number)
+  this.interview.offerStatus = number
+}
 createSalaryAndBenefit(salaryAndBen : INewSalaryAndBenefits){
   this.salaryAndBenefits.engagement = parseInt(salaryAndBen.engagement);
   this.salaryAndBenefits.levelOfExperience = parseInt(salaryAndBen.levelOfExperience)
@@ -129,6 +137,16 @@ Swal.fire("success","Your comment is added");
   err => {
 Swal.fire("opssss...","Something went wrong")
   })
+}
+
+createInterview(interview: INewInterview){
+  console.log(this.interview)
+  this.impresionService.saveInterview(this.interview).subscribe( response=> {
+    Swal.fire("success","Your interview  is added");
+      },
+      err => {
+    Swal.fire("opssss...","Something went wrong")
+      })
 }
   addOffice(office: string){
     this.request.offices.push(office);

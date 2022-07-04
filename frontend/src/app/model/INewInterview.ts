@@ -5,6 +5,6 @@ export interface INewInterview{
     HRInterview: string,
     technicalInterview: string,
     interviewDifficulty: string,
-    offerStatus: string,
+    offerStatus: any,
     title: string,
 }

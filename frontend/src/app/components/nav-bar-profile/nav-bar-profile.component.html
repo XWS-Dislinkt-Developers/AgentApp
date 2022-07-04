@@ -249,9 +249,6 @@
                             <option value="Marketing manager"> Marketing manager</option>
                           </select>  </div>
   
-              
-  
-             
                 <div class="col-sm-2 "><label style="font-size: medium;">Experience</label> </div> 
                 <div class="col-sm-4">  
                   <select class="custom-select" [(ngModel)]="salaryAndBenefits.levelOfExperience">
@@ -283,14 +280,8 @@
                 </select>  </div>
                 
               </div>
-             
-             
-  
-              <h1> Benefits</h1>
             
-  
-         
-  
+              <h1> Benefits</h1>
             <div class="row"> 
               <div class="col-sm-3"> <label> Flexible work time</label> </div>
              <div class="col-sm-2">  <input type="checkbox" id="benefit" value="Flexible work time"  (change)="handleBenefit('Flexible work time')" ></div>
@@ -352,18 +343,27 @@
             <div class="form">
               <div class="row"> 
                         <div class="col-sm-2" ><label style="font-size: medium;">Company</label> </div> 
-                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company" >  </div>
+                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company"  [(ngModel)]="name" (ngModelChange)="search($event)" > 
+                          <select class="custom-select"  *ngIf="company != null">
+                         
+                            <option  *ngFor="let c of company" value="{{c.id}}" click="setCompanyId(c)" >{{c.name}}</option>
+                           
+                          </select> </div>
                </div>
                       
               <div class="row">
                         <div class="col-sm-2"><label style="font-size: medium;">Position</label> </div> 
                         <div class="col-sm-4">  
-                          <select class="custom-select">
-                          <option selected>Position</option>
-                          <option value="1">Software developer</option>
-                          <option value="2">Animator</option>
-                          <option value="3">Administration</option>
-                          <option value="3">Customer support</option>
+                          <select class="custom-select" [(ngModel)]="interview.position">
+                            <option value="Software developer">Software developer</option>
+                            <option value="Animator">Animator</option>
+                            <option value="Administration">Administration</option>
+                            <option value="Customer support">Customer support</option>
+                            <option value="Web developer">Web developer</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Partner">Partner</option>
+                            <option value="Project manager"> Project manager</option>
+                            <option value="Marketing manager"> Marketing manager</option>
                         </select>  </div>
   
               
@@ -371,7 +371,7 @@
              
                 <div class="col-sm-2 "><label style="font-size: medium;">Year of interview</label> </div> 
                 <div class="col-sm-4">  
-                  <select class="custom-select">
+                  <select class="custom-select" [(ngModel)]="interview.yearOfInterview">
                     <option selected>year</option>
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
@@ -393,31 +393,39 @@
               <div class="row">
                 <div class="col-sm-2"><label style="font-size: medium;">Title</label> </div> 
                 <div class="col-sm-10">  
-                  <input type="text" class="form-control" placeholder="title" >
+                  <input type="text" class="form-control" placeholder="title" [(ngModel)]="interview.title" >
                   
                 
               </div>      
             </div>
   
               <label> HR interview</label>
-            <div class="row">   <div class="col"> <textarea type="text" class="form-control" placeholder="Describe interview with HR"> </textarea></div></div>
+            <div class="row">   <div class="col"> <textarea type="text" class="form-control" placeholder="Describe interview with HR" [(ngModel)]="interview.HRInterview"> </textarea></div></div>
   
             
               <label> Technical interview</label>
               <div class="row"> 
-              <div class="col"> <textarea type="text" class="form-control" placeholder="Describe tehnical interview"> </textarea></div></div>
+              <div class="col"> <textarea type="text" class="form-control" placeholder="Describe tehnical interview" [(ngModel)]="interview.technicalInterview"> </textarea></div></div>
   
             <div class="row"> <div class="col-sm-4"> <label>Interview difficulty </label> </div>
              <div class="col-sm-6">
               <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button">Easy</button>
-                <button class="btn btn-outline-secondary" type="button">Middle</button>
-                <button class="btn btn-outline-danger" type="button" value="difficult">Difficult</button>
+                <button class="btn btn-outline-primary" type="button" (click)="setDifficulty(0)">Easy</button>
+                <button class="btn btn-outline-secondary" type="button" (click)="setDifficulty(1)">Middle</button>
+                <button class="btn btn-outline-danger" type="button" value="difficult" (click)="setDifficulty(2)">Difficult</button>
               </div></div></div>
+
+              <div class="row"> <div class="col-sm-4"> <label>Did you get job? </label> </div>
+              <div class="col-sm-6">
+               <div class="input-group-append">
+                 <button class="btn btn-outline-primary" type="button" (click)="setStatus(0)">Yes, accepted</button>
+                 <button class="btn btn-outline-secondary" type="button" (click)="setStatus(1)">Yes, didn't accept</button>
+                 <button class="btn btn-outline-danger" type="button" value="difficult" (click)="setStatus(2)">No</button>
+               </div></div></div>
   
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="createInterview(interview)" >Confirm</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
