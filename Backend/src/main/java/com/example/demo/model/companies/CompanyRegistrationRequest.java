@@ -20,7 +20,7 @@ public class CompanyRegistrationRequest {
     private String yearOfOpening;
     @Column(name="logo", length = 10485760)
     private String logo;
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column
     private List<String> offices;
     @ElementCollection(fetch = FetchType.LAZY)

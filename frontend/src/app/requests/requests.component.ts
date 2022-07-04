@@ -27,8 +27,10 @@ export class RequestsComponent implements OnInit {
   
   accept(id : any){
    var idNew = parseInt(id)
-        this.companyService.acceptRequest(idNew).subscribe();
-      this.getAllRequests();
+        this.companyService.acceptRequest(idNew).subscribe( res =>{
+           this.getAllRequests();
+        }
+        );
     
   }
 }

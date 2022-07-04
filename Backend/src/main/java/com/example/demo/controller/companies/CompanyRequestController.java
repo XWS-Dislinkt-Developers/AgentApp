@@ -36,7 +36,6 @@ public class CompanyRequestController {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    //@RequestMapping(method = {RequestMethod.GET })
     @GetMapping(value = "getAll")
     public ResponseEntity<List<CompanyRequestViewDTO>> getAll(){
         ArrayList<CompanyRequestViewDTO> ret = new ArrayList<>();

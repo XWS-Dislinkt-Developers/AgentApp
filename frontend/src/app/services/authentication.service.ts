@@ -45,7 +45,7 @@ export class AuthenticationService {
     this._http.post<any>('http://localhost:8081/auth/signup', user ).subscribe(
       response=> {
         console.log(response)
-         this.login(user.email, user.password);
+       //this.login(user.email, user.password);
       }
     )
    
