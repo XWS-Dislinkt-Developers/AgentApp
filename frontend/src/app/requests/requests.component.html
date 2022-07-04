@@ -1,0 +1,33 @@
+<div > <app-nav-bar-profile></app-nav-bar-profile> </div>
+
+<div> 
+    <table class="table">
+        <thead>
+          <tr>
+            
+            
+            <th scope="col">Company name</th>
+            <th scope="col">Number of employees</th>
+            <th scope="col">Year of opening</th>
+            <th scope="col">User email</th>
+            <th scope="col">User name</th>
+            <th scope="col">User surname</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of requests">
+            <td>{{r.name}}</td>
+            <td>{{r.numberOfEmployees}}</td>
+            <td>{{r.yearOfOpening}}</td>
+            <td>{{r.user.email}}</td>
+            <td>{{r.user.name}}</td>
+            <td>{{r.user.surname}}</td>
+            <td> <button type="button" class="btn btn-secondary" (click)="accept(r.id)"> accept  </button></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>

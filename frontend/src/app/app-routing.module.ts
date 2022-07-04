@@ -6,6 +6,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { MyCompaniesComponent } from './my-companies/my-companies.component';
 import { CompanyComponent } from './company/company.component';
+import { RequestsComponent } from './requests/requests.component';
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'profile', component: ProfileComponent  },
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'jobs', component: JobsComponent  },
   { path: 'my-company', component: MyCompaniesComponent  },
   { path: 'company/:id', component: CompanyComponent  },
-
+  { path: 'requests', component: RequestsComponent  },
 
 ];
 

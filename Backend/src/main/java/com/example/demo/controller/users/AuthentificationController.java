@@ -16,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-
+@CrossOrigin
 @Controller
 @RequestMapping(value = "auth")
 public class AuthentificationController {

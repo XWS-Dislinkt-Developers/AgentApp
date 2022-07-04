@@ -35,7 +35,7 @@ public class JobOfferService {
     }
 
     public List<JobOffer> search(String param){
-        return this.jobOfferRepository.searchJobOffers(param);
+        return this.jobOfferRepository.searchJobOffers("%"+param+"%");
     }
 
 

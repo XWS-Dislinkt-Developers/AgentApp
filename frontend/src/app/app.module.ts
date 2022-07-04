@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,8 @@ import { NavBarProfileComponent } from './components/nav-bar-profile/nav-bar-pro
 import { JobsComponent } from './jobs/jobs.component';
 import { MyCompaniesComponent } from './my-companies/my-companies.component';
 import { CompanyComponent } from './company/company.component';
+import { RequestsComponent } from './requests/requests.component';
+
 
 @NgModule({
   declarations: [
@@ -24,15 +27,20 @@ import { CompanyComponent } from './company/company.component';
     NavBarProfileComponent,
     JobsComponent,
     MyCompaniesComponent,
-    CompanyComponent
+    CompanyComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+ 
+ 
 
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

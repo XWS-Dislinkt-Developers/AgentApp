@@ -1,23 +1,24 @@
-<div> 
+<div *ngIf="anonymous"> 
     <app-nav-bar></app-nav-bar>
-
-
 </div>
-
+<div *ngIf="!anonymous"> 
+  <app-nav-bar-profile></app-nav-bar-profile>
+</div>
 <div class="backgroundImage">
 
     <div class="header">
         <div class="row" >
-            <div class="col-sm-4"> <img src="../../favicon.ico" class="logo"> </div>
+            <div class="col-sm-4"> <img [src]="company.logoImage" class="logo"> </div>
             
             <div class="col-sm-7 col-info" >
                 <div class="row">
                     <div class="col-sm-5"> 
-                       <h2>Company name</h2> 
+                       <h2>{{company.name}}</h2> 
                     </div>
                  </div>
                  <div class="row">
-                    <div class="col-sm-5">  Grade </div>
+                    <div class="col-sm-5"> <span class="fa fa-star checked"></span>
+                       {{ company.grade}}</div>
                  </div>
 
              </div>
@@ -37,13 +38,13 @@
       <a class="nav-link active" data-toggle="tab" href="#company-info" style="font-size: larger;">Informations about company</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#comments"  data-toggle="tab" style="font-size: larger;">Comments</a>
+      <a class="nav-link" href="#comments" (click)="showComments()" data-toggle="tab" style="font-size: larger;">Comments</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#salaryandben"  data-toggle="tab" style="font-size: larger;">Salary and benefits</a>
+      <a class="nav-link" href="#salaryandben" (click)="showSalaryAndBenefits()" data-toggle="tab" style="font-size: larger;">Salary and benefits</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#interview"   data-toggle="tab" style="font-size: larger;">Interview</a>
+      <a class="nav-link" href="#inte" (click)="showInterviews()"  data-toggle="tab" style="font-size: larger;">Interview</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#jobs"  data-toggle="tab" style="font-size: larger;">Jobs</a>
@@ -55,31 +56,148 @@
     <div id="company-info" class="container tab-pane active"> 
         <div class="row">
         <div class="col-sm-2"> <label > Company name </label> </div>    
-        <div class="col-sm-2"> <h5> imence </h5> </div>  
+        <div class="col-sm-2"> <h5> {{company.name}} </h5> </div>  
         <div class="col-sm-2"> <label > Year of opening </label> </div>    
-        <div class="col-sm-1"> <h5> 2020 </h5> </div>  
+        <div class="col-sm-1"> <h5>{{company.yearOfOpening}} </h5> </div>  
         <div class="col-sm-1"> <label >Employees </label> </div>    
-        <div class="col-sm-1"> <h5> 20-50 </h5> </div>  
-        <div class="col-sm-1"> <label > Contry </label> </div>    
-        <div class="col-sm-2"> <h5> fbndfnsnfsj </h5> </div>  
+        <div class="col-sm-1"> <h5> {{company.numberOfEmployees}} </h5> </div>  
+        <div class="col-sm-1"> <label > Offices </label> </div>    
+        <div class="col-sm-2"> <h5> {{company.offices}} </h5> </div>  
         </div>
-        <div class="row">
-            <div class="col-sm-2"> <label > Web site </label> </div>    
-            <div class="col-sm-2"> <h5>  </h5> </div>  
-            <div class="col-sm-2"> <label > Mayor office </label> </div>    
-            <div class="col-sm-1"> <h5> 2020 </h5> </div>  
-            <div class="col-sm-1"> <label >Employees </label> </div>    
-            <div class="col-sm-1"> <h5> 20-50 </h5> </div>  
-            <div class="col-sm-1"> <label > Contry </label> </div>    
-            <div class="col-sm-1"> <h5> fbndfnsnfsj </h5> </div>  
-            </div>
+      <hr/>
+
+      <div class="description"> 
+      <div class="row " style=" margin-top: 2%; ">
+      <h5> About us: </h5>  
+      </div>  
+      <div class="row">
+        <p style="font-size: 20px ; margin-top: 3%;"> {{company.description}} </p>  
+        </div>
+      </div>
         
     </div>
 
-    <div id="comments" class="container tab-pane fade"> </div>
+    <div id="comments" class="container tab-pane fade">
+     
+      <div class="card" *ngFor=" let comment of comments">
+        
+        <div class="card-body">
+            <div class="row">
+                
+                <div class="col-sm-11">
+                    <div class="row">
+                      <h4 class="card-title" style="margin-left:1rem">{{comment.title}}</h4> 
+                      </div>
 
-    <div id="salaryandben" class="container tab-pane fade"> </div>
-    <div id="interview" class="container tab-pane fade"> </div>
+                      <div class="row"> 
+                         <div class="col-sm-2">
+                      <p >Grade</p> 
+                    </div>
+                    <div class="col-sm-2">
+                        <span>
+                            <span class="fa fa-star checked"></span> {{comment.grade}} </span>
+                      </div>
+                     
+                      </div>
+                      <label style="margin-right: 2rem ;"> Position: {{comment.position}}</label>
+                      <label style="margin-right: 2rem ;"> Experience: {{comment.levelOfExperience}}</label>
+                      <label *ngIf="comment.currentlyEmployed" style="margin-right: 2rem ;"> Currently employed: Yes </label>
+                      <label *ngIf="!comment.currentlyEmployed" style="margin-right: 2rem ;"> Currently employed: No </label>
+                      <label  style="margin-right: 2rem ;"> Engagement: {{comment.engagement}} </label>
+                      <label  style="margin-right: 2rem ;"> Position: {{comment.position}} </label>
+                      <div class="row"> 
+                        <div class="col-sm-2">
+                     <p >Positive</p> 
+                   </div>
+                   <div class="col-sm-9">
+                    <label  style="margin-right: 2rem ;">  {{comment.positive}} </label>
+                     </div>
+                    
+                     </div>
+                     <div class="row"> 
+                      <div class="col-sm-2">
+                   <p >Negative</p> 
+                 </div>
+                 <div class="col-sm-9">
+                  <label  style="margin-right: 2rem ;">  {{comment.negative}} </label>
+                   </div>
+                  
+                   </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+    <div id="salaryandben" class="container tab-pane fade" >
+      
+      <div class="card" *ngFor=" let s of salaryAndBenefits">
+        
+        <div class="card-body">
+            <div class="row">
+                
+                <div class="col-sm-11">
+                    <div class="row">
+                      <h4 class="card-title" style="margin-left:1rem">{{s.position}}</h4> 
+                      </div>
+
+                     
+                      <label style="margin-right: 2rem ;"> Experience: {{s.levelOfExperience}}</label>
+                      <label  style="margin-right: 2rem ;"> Engagement: {{s.engagement}} </label>
+                      <label  style="margin-right: 2rem ;"> Benefits: {{s.benefits}} </label>
+                     
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <div id="inte" class="container tab-pane fade" >
+      
+      <div class="card" *ngFor=" let i of interviews">
+        
+        <div class="card-body">
+            <div class="row">
+                
+                <div class="col-sm-11">
+                    <div class="row">
+                      <h4 class="card-title" style="margin-left:1rem">{{i.title}}</h4> 
+                      </div>
+
+                     
+                      <label style="margin-right: 2rem ;"> Position: {{i.position}}</label>
+                      <label style="margin-right: 2rem ;"> Year of interview: {{i.yearOfInterview}}</label>
+                      <label  style="margin-right: 2rem ;"> Interview difficult: {{i.interviewDificulty}} </label>
+                      <label  style="margin-right: 2rem ;"> Offer status: {{i.offerStatus}} </label>
+                
+                     
+                      <div class="row"> 
+                        <div class="col-sm-2">
+                     <p >HR interview:</p> 
+                   </div>
+                   <div class="col-sm-9">
+                    <label  style="margin-right: 2rem ;">  {{i.HRInterview}} </label>
+                     </div>
+                    
+                     </div>
+                     <div class="row"> 
+                      <div class="col-sm-2">
+                   <p >Technical interview</p> 
+                 </div>
+                 <div class="col-sm-9">
+                  <label  style="margin-right: 2rem ;">  {{i.technicalInterview}} </label>
+                   </div>
+                  
+                   </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
     <div id="jobs" class="container tab-pane fade"> 
 
       <div class="card">

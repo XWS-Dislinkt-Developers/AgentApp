@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@CrossOrigin
 @Controller
 @RequestMapping(value = "companyRequest")
 public class CompanyRequestController {
@@ -36,20 +36,20 @@ public class CompanyRequestController {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @RequestMapping(method = {RequestMethod.GET })
+    @GetMapping(value = "getAll")
     public ResponseEntity<List<CompanyRequestViewDTO>> getAll(){
         ArrayList<CompanyRequestViewDTO> ret = new ArrayList<>();
 
         for (CompanyRegistrationRequest request : this.companyRequestService.getAll()){
-            ret.add(new CompanyRequestViewDTO(request.getId(),request.getName(), request.getDescription(),request.getYearOfOpening(), request.getNumberOfEmployees()));
+            ret.add(new CompanyRequestViewDTO(request.getId(),request.getName(), request.getYearOfOpening(),request.getDescription(), request.getNumberOfEmployees(), request.getCompanyOwner()));
         }
 
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @PutMapping(value = "approveRequest/{id}")
-    public ResponseEntity<HttpStatus> approveRequest(@PathVariable int id){
+    @PostMapping(value = "approveRequest")
+    public ResponseEntity<HttpStatus> approveRequest(@RequestBody int id){
         this.companyRequestService.approveRequest(id);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

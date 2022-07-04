@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jobs.component.css']
 })
 export class JobsComponent implements OnInit {
+  anonymous: boolean= true;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.whoAmI()
   }
-
+  whoAmI(){
+    if(localStorage.getItem("accessToken") != null){
+      this.anonymous = false;
+    }
+}
 }

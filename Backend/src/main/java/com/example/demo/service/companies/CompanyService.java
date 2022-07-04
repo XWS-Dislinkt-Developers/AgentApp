@@ -17,11 +17,11 @@ public class CompanyService {
     }
 
     public List<Company> getCompanies(String name) {
-        return this.companyRepository.getCompanies(name);
+        return this.companyRepository.getCompanies( "%"+name+"%");
     }
 
     public List<Company> getCompaniesFullSearch(String searchParam) {
-        return this.companyRepository.getCompaniesFullSearch(searchParam);
+        return this.companyRepository.getCompaniesFullSearch("%"+searchParam+"%");
     }
 
     public Company getCompany(int id) {

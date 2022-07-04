@@ -12,10 +12,11 @@
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#interview">Interview</a>
         </div>
         <a class="nav-link links" href="companies" >Companies </a>
-        <a class="nav-link links" href="my-company" >My company </a>
+        <a class="nav-link links" href="my-company" *ngIf="!admin" >My company </a>
+        <a class="nav-link links" href="requests" *ngIf="admin" >Company requests </a>
         <a class="nav-link links"  href="jobs">Jobs </a>
-        <a class="nav-link links" data-toggle="modal" data-target="#create" href="#"> Register company </a>
-        <a class="nav-link linkSign"  href=""  style="margin-bottom: 1rem; color: white; background-color: dimgrey;">Sign out  </a>
+        <a class="nav-link links" data-toggle="modal" data-target="#create" href="#" *ngIf="!admin"> Register company </a>
+        <a class="nav-link linkSign" (click)="signOut()"  style="margin-bottom: 1rem; color: white; background-color: dimgrey;">Sign out  </a>
     
       </nav>
 
@@ -33,10 +34,12 @@
         <div class="modal-body">
             <div class="form">
               <label style="font-size: medium;">Name</label>
-              <input type="text" class="form-control" placeholder="Enter Name" > 
+              <input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]="request.name" > 
           
                <label style="font-size: medium;">Year of opening</label>
-               <input type="number" class="form-control" placeholder="Enter year" >
+               <input type="number" class="form-control" placeholder="Enter year" [(ngModel)]="request.yearOfOpening" >
+               <label style="font-size: medium;">Number of employees</label>
+               <input type="number" class="form-control" placeholder="Enter number" [(ngModel)]="request.numberOfEmployees" >
 
                <label style="font-size: medium;">Offices </label>
                
@@ -60,23 +63,25 @@
                   </div>  -->
                
                     <div class="row">
-                      <div class="col-sm-9">  <input type="text" class="form-control" placeholder="offices"   >   </div>
-                       <div class="col-sm-2"><button type="button" class="btn btn-secondary"> add</button> </div>
+                      <div class="col-sm-9">  <input type="text" class="form-control" placeholder="offices" [(ngModel)]="office"  >   </div>
+                       <div class="col-sm-2"><button type="button" class="btn btn-secondary" (click)="addOffice(office)"> add</button> </div>
                     </div>
                    
-                      <div> 
+                      <div *ngIf="request.offices.length != 0"> 
+                        <div  *ngFor="let officeName of request.offices" class=" row"> <p style="margin-left: 3rem ;">{{officeName}} </p></div>
 
                       </div>
                       <label style="font-size: medium;">Position </label>
                       <div class="row">
-                        <div class="col-sm-9">  <input type="text" class="form-control" placeholder="position"   >   </div> <div class="col-sm-2"><button type="button" class="btn btn-secondary"> add</button> </div>
+                        <div class="col-sm-9">  <input type="text" class="form-control" placeholder="position"  [(ngModel)]="position" >   </div> 
+                        <div class="col-sm-2"><button type="button" class="btn btn-secondary" (click)="addPosition(position)"> add</button> </div>
                       </div>
                      
-                        <div> 
-  
+                        <div *ngIf="request.positions.length != 0"> 
+                          <div  *ngFor="let positionName of request.positions" class=" row" style="margin-left: 3rem ;"> {{positionName}}</div>
                         </div>
                         <label style="font-size: medium;">Description </label>  
-                        <textarea class="form-control"> </textarea>
+                        <textarea class="form-control" [(ngModel)]="request.description" > </textarea>
                    
                      
                      
@@ -84,15 +89,21 @@
                      
                       <div class="row" style="margin-top: 1rem;">
                         <div class="col-sm-3"><label style="font-size: medium;" > Logo</label> </div>
-                        <div class="col-sm-3"><input type="file" >  </div>
-                         </div>
+                        <div class="col-sm-9"> <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control" >  </div>
+                        
+                      </div>
+                      <div class="img-space">
+                        <ng-container *ngIf="isImageSaved;">
+                          <img [src]="cardImageBase64" style="width: 100px;height:100px;" />
+                        </ng-container>
+                      </div>
                          
                 
             </div>
   
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="companyRegistration()" >Confirm</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -101,97 +112,104 @@
 
 <!-- modal for comment -->
 <div id="comment" class="modal fade bd-example-modal-lg " style="display: none; " role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="width: 65rem;">
-  
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Leave comment</h4>
-        </div>
-        <div class="modal-body">
-            <div class="form">
-              <div class="row"> 
-                        <div class="col-sm-2" ><label style="font-size: medium;">Company</label> </div> 
-                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company" >  </div>
-               </div>
+  <div class="modal-dialog modal-lg" style="width: 65rem;">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Leave comment</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form">
+            <div class="row"> 
+                      <div class="col-sm-2" ><label style="font-size: medium;">Company</label> </div> 
+                      <div class="col-sm-7"> <input type="text" class="form-control" placeholder="search company"  [(ngModel)]="name" (ngModelChange)="search($event)"> 
+                        <select class="custom-select"  *ngIf="company != null">
+                         
+                        <option  *ngFor="let c of company" value="{{c.id}}" click="setCompanyId(c)" >{{c.name}}</option>
+                       
+                      </select> </div>
                       
-              <div class="row">
-                        <div class="col-sm-2"><label style="font-size: medium;">Position</label> </div> 
-                        <div class="col-sm-4">  
-                          <select class="custom-select">
-                          <option selected>Position</option>
-                          <option value="1">Software developer</option>
-                          <option value="2">Animator</option>
-                          <option value="3">Administration</option>
-                          <option value="3">Customer support</option>
-                        </select>  </div>
-  
-              
-  
-             
-                <div class="col-sm-2 "><label style="font-size: medium;">Experience</label> </div> 
-                <div class="col-sm-4">  
-                  <select class="custom-select">
-                  <option selected>Level</option>
-                  <option value="1">Junior</option>
-                  <option value="2">Medior</option>
-                  <option value="3">Senior</option>
-                </select>  </div>
-                </div>
-             
-                 
-              <div class="row">
-                <div class="col-sm-2"><label style="font-size: medium;">Engagement</label> </div> 
-                <div class="col-sm-4">  
-                  <select class="custom-select">
-                  <option selected>Time</option>
-                  <option value="1">Full time</option>
-                  <option value="2">Part time</option>
-                  <option value="3">Frelance</option>
-                  <option value="3">Intern</option>
-                </select>  </div>
-              
-                <div class="col-sm-2"><label style="font-size: medium;">Employed</label> </div> 
-                <div class="col-sm-4">  
-                  <select class="custom-select">
-                  <option selected>status</option>
-                  <option value="1">Current</option>
-                  <option value="2">Former</option>
-                </select>  </div>
-                
+                      <!-- <div class="col-sm-1"> <button type="button" class="btn btn-secondary" (click)="searchCompany(name)"> find</button> </div> -->
+             </div>
+                    
+            <div class="row">
+                      <div class="col-sm-2"><label style="font-size: medium;">Position</label> </div> 
+                      <div class="col-sm-4">  
+                        <select class="custom-select"  [(ngModel)]="comment.position">
+                        <option selected>Position</option>
+                        <option value="Software developer">Software developer</option>
+                        <option value="Animator">Animator</option>
+                        <option value="Administration">Administration</option>
+                        <option value="Customer support">Customer support</option>
+                        <option value="Web developer">Web developer</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Partner">Partner</option>
+                        <option value="Project manager"> Project manager</option>
+                        <option value="Marketing manager"> Marketing manager</option>
+                      </select>  </div>
+
+              <div class="col-sm-2 "><label style="font-size: medium;">Experience</label> </div> 
+              <div class="col-sm-4">  
+                <select class="custom-select" [(ngModel)]="comment.levelOfExperience">
+                <option selected>Level</option>
+                <option value="0">Junior</option>
+                <option value="1">Medior</option>
+                <option value="2">Senior</option>
+              </select>  </div>
               </div>
-              <hr/>
-              <div class="row">
-                <div class="col-sm-2"><label style="font-size: medium;">Title</label> </div> 
-                <div class="col-sm-10">  
-                  <input type="text" class="form-control" placeholder="title" >
-                  
-                
-              </div>      
-            </div>
-  
-              <label> Positive</label>
-            <div class="row">   <div class="col"> <textarea type="text" class="form-control"> </textarea></div></div>
-  
-            <label> Negative</label>
-            <div class="row">   <div class="col">   <textarea type="text" class="form-control"> </textarea></div></div>
-  
-            <div class="row"> <div class="col-sm-2"> <label> Grade</label> </div>
-             <div class="col-sm-5">
-               <!-- <span> <span class = "fa fa-star checked" > </span> <span class = "fa fa-star checked" ></span> <span class = "fa fa-star unchecked" > </span><span class = "fa fa-star unchecked" > </span><span class = "fa fa-star unchecked" ></span> </span> -->
-               <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-               </div>
            
-            </div></div>
-  
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        </div>
+               
+            <div class="row">
+              <div class="col-sm-2"><label style="font-size: medium;">Engagement</label> </div> 
+              <div class="col-sm-4">  
+                <select class="custom-select" [(ngModel)]="comment.engagement">
+                <option selected>Time</option>
+                <option value="0">Full time</option>
+                <option value="1">Part time</option>
+                <option value="2">Frelance</option>
+                <option value="3">Intern</option>
+              </select>  </div>
+            
+              <div class="col-sm-2"><label style="font-size: medium;">Employed</label> </div> 
+              <div class="col-sm-4">  
+                <select class="custom-select" [(ngModel)]="comment.currentlyEmployed">
+                <option selected>status</option>
+                <option value="true">Current</option>
+                <option value="false">Former</option>
+              </select>  </div>
+              
+            </div>
+            <hr/>
+            <div class="row">
+              <div class="col-sm-2"><label style="font-size: medium;">Title</label> </div> 
+              <div class="col-sm-10">  
+                <input type="text" class="form-control" placeholder="title"  [(ngModel)]="comment.title" >
+            </div>      
+          </div>
+
+            <label> Positive</label>
+          <div class="row">   <div class="col"> <textarea type="text" class="form-control"  [(ngModel)]="comment.positive"> </textarea></div></div>
+
+          <label> Negative</label>
+          <div class="row">   <div class="col">   <textarea type="text" class="form-control"  [(ngModel)]="comment.negative"> </textarea></div></div>
+
+          <div class="row"> <div class="col-sm-2" > <label> Grade</label> </div>
+           <div class="col-sm-5">
+             <!-- <span> <span class = "fa fa-star checked" > </span> <span class = "fa fa-star checked" ></span> <span class = "fa fa-star unchecked" > </span><span class = "fa fa-star unchecked" > </span><span class = "fa fa-star unchecked" ></span> </span> -->
+             <div class="rating"> <input type="radio" name="rating" value="5" id="5"  [(ngModel)]="comment.grade"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"  [(ngModel)]="comment.grade"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3" [(ngModel)]="comment.grade"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2" [(ngModel)]="comment.grade"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1" [(ngModel)]="comment.grade"><label for="1">☆</label>
+             </div>
+         
+          </div></div>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="createComment(comment)" >Confirm</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
-  </div>
+</div>
+</div>
   
   
    <!-- modal for salary and benefits -->
@@ -206,30 +224,38 @@
             <div class="form">
               <div class="row"> 
                         <div class="col-sm-2" ><label style="font-size: medium;">Company</label> </div> 
-                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company" >  </div>
+                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company"  [(ngModel)]="name" (ngModelChange)="search($event)" > 
+                          <select class="custom-select"  *ngIf="company != null">
+                         
+                            <option  *ngFor="let c of company" value="{{c.id}}" click="setCompanyId(c)" >{{c.name}}</option>
+                           
+                          </select>
+                        </div>
                </div>
                       
               <div class="row">
                         <div class="col-sm-2"><label style="font-size: medium;">Position</label> </div> 
                         <div class="col-sm-4">  
-                          <select class="custom-select">
-                          <option selected>Position</option>
-                          <option value="1">Software developer</option>
-                          <option value="2">Animator</option>
-                          <option value="3">Administration</option>
-                          <option value="3">Customer support</option>
-                        </select>  </div>
+                          <select class="custom-select"  [(ngModel)]="salaryAndBenefits.position">
+                            <option selected>Position</option>
+                            <option value="Software developer">Software developer</option>
+                            <option value="Animator">Animator</option>
+                            <option value="Administration">Administration</option>
+                            <option value="Customer support">Customer support</option>
+                            <option value="Web developer">Web developer</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Partner">Partner</option>
+                            <option value="Project manager"> Project manager</option>
+                            <option value="Marketing manager"> Marketing manager</option>
+                          </select>  </div>
   
-              
-  
-             
                 <div class="col-sm-2 "><label style="font-size: medium;">Experience</label> </div> 
                 <div class="col-sm-4">  
-                  <select class="custom-select">
+                  <select class="custom-select" [(ngModel)]="salaryAndBenefits.levelOfExperience">
                   <option selected>Level</option>
-                  <option value="1">Junior</option>
-                  <option value="2">Medior</option>
-                  <option value="3">Senior</option>
+                  <option value="0">Junior</option>
+                  <option value="1">Medior</option>
+                  <option value="2">Senior</option>
                 </select>  </div>
                 </div>
              
@@ -237,72 +263,66 @@
               <div class="row">
                 <div class="col-sm-2"><label style="font-size: medium;">Engagement</label> </div> 
                 <div class="col-sm-4">  
-                  <select class="custom-select">
+                  <select class="custom-select" [(ngModel)]="salaryAndBenefits.engagement">
                   <option selected>Time</option>
-                  <option value="1">Full time</option>
-                  <option value="2">Part time</option>
-                  <option value="3">Frelance</option>
+                  <option value="0">Full time</option>
+                  <option value="1">Part time</option>
+                  <option value="2">Frelance</option>
                   <option value="3">Intern</option>
                 </select>  </div>
               
                 <div class="col-sm-2"><label style="font-size: medium;">Employed</label> </div> 
                 <div class="col-sm-4">  
-                  <select class="custom-select">
+                  <select class="custom-select" >
                   <option selected>status</option>
-                  <option value="1">Current</option>
-                  <option value="2">Former</option>
+                  <option value="true">Current</option>
+                  <option value="false">Former</option>
                 </select>  </div>
                 
               </div>
-             
-             
-  
-              <h1> Benefits</h1>
             
-  
-         
-  
+              <h1> Benefits</h1>
             <div class="row"> 
               <div class="col-sm-3"> <label> Flexible work time</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" id="benefit" value="Flexible work time"  (change)="handleBenefit('Flexible work time')" ></div>
              <div class="col-sm-5"> <label> Entertainment and fitness content</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input" (change)="handleBenefit('Entertainment and fitness content')"></div>
              
             </div>
             <div class="row"> 
               <div class="col-sm-3"> <label> Work from home</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"  (change)="handleBenefit('Work from home')"></div>
              <div class="col-sm-5"> <label> Paid training and coaching</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"  (change)="handleBenefit('Paid training and coaching')"></div>
              
             </div>
   
             <div class="row"> 
               <div class="col-sm-3"> <label> Private insurance</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"  (change)="handleBenefit(' Private insurance')"></div>
              <div class="col-sm-5"> <label> Work through an agency</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"  (change)="handleBenefit('Work through an agency')"></div>
              
             </div>
   
             <div class="row"> 
               <div class="col-sm-3"> <label> Provided food</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"  (change)="handleBenefit('Provided food')"></div>
              <div class="col-sm-5"> <label> Profit sharing</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"  (change)="handleBenefit('Profit sharing')"></div>
              
             </div>
             <div class="row"> 
               <div class="col-sm-3"> <label> Provided parking</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"  (change)="handleBenefit('Provided parking')"></div>
              <div class="col-sm-5"> <label> Company shares</label> </div>
-             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"></div>
+             <div class="col-sm-2">  <input type="checkbox" aria-label="Checkbox for following text input"  (change)="handleBenefit('Company shares')"></div>
              
             </div>
             
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="createSalaryAndBenefit(salaryAndBenefits)" >Confirm</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -323,18 +343,27 @@
             <div class="form">
               <div class="row"> 
                         <div class="col-sm-2" ><label style="font-size: medium;">Company</label> </div> 
-                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company" >  </div>
+                        <div class="col-sm-10"> <input type="text" class="form-control" placeholder="search company"  [(ngModel)]="name" (ngModelChange)="search($event)" > 
+                          <select class="custom-select"  *ngIf="company != null">
+                         
+                            <option  *ngFor="let c of company" value="{{c.id}}" click="setCompanyId(c)" >{{c.name}}</option>
+                           
+                          </select> </div>
                </div>
                       
               <div class="row">
                         <div class="col-sm-2"><label style="font-size: medium;">Position</label> </div> 
                         <div class="col-sm-4">  
-                          <select class="custom-select">
-                          <option selected>Position</option>
-                          <option value="1">Software developer</option>
-                          <option value="2">Animator</option>
-                          <option value="3">Administration</option>
-                          <option value="3">Customer support</option>
+                          <select class="custom-select" [(ngModel)]="interview.position">
+                            <option value="Software developer">Software developer</option>
+                            <option value="Animator">Animator</option>
+                            <option value="Administration">Administration</option>
+                            <option value="Customer support">Customer support</option>
+                            <option value="Web developer">Web developer</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Partner">Partner</option>
+                            <option value="Project manager"> Project manager</option>
+                            <option value="Marketing manager"> Marketing manager</option>
                         </select>  </div>
   
               
@@ -342,7 +371,7 @@
              
                 <div class="col-sm-2 "><label style="font-size: medium;">Year of interview</label> </div> 
                 <div class="col-sm-4">  
-                  <select class="custom-select">
+                  <select class="custom-select" [(ngModel)]="interview.yearOfInterview">
                     <option selected>year</option>
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
@@ -364,31 +393,39 @@
               <div class="row">
                 <div class="col-sm-2"><label style="font-size: medium;">Title</label> </div> 
                 <div class="col-sm-10">  
-                  <input type="text" class="form-control" placeholder="title" >
+                  <input type="text" class="form-control" placeholder="title" [(ngModel)]="interview.title" >
                   
                 
               </div>      
             </div>
   
               <label> HR interview</label>
-            <div class="row">   <div class="col"> <textarea type="text" class="form-control" placeholder="Describe interview with HR"> </textarea></div></div>
+            <div class="row">   <div class="col"> <textarea type="text" class="form-control" placeholder="Describe interview with HR" [(ngModel)]="interview.HRInterview"> </textarea></div></div>
   
             
               <label> Technical interview</label>
               <div class="row"> 
-              <div class="col"> <textarea type="text" class="form-control" placeholder="Describe tehnical interview"> </textarea></div></div>
+              <div class="col"> <textarea type="text" class="form-control" placeholder="Describe tehnical interview" [(ngModel)]="interview.technicalInterview"> </textarea></div></div>
   
             <div class="row"> <div class="col-sm-4"> <label>Interview difficulty </label> </div>
              <div class="col-sm-6">
               <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button">Easy</button>
-                <button class="btn btn-outline-secondary" type="button">Middle</button>
-                <button class="btn btn-outline-danger" type="button" value="difficult">Difficult</button>
+                <button class="btn btn-outline-primary" type="button" (click)="setDifficulty(0)">Easy</button>
+                <button class="btn btn-outline-secondary" type="button" (click)="setDifficulty(1)">Middle</button>
+                <button class="btn btn-outline-danger" type="button" value="difficult" (click)="setDifficulty(2)">Difficult</button>
               </div></div></div>
+
+              <div class="row"> <div class="col-sm-4"> <label>Did you get job? </label> </div>
+              <div class="col-sm-6">
+               <div class="input-group-append">
+                 <button class="btn btn-outline-primary" type="button" (click)="setStatus(0)">Yes, accepted</button>
+                 <button class="btn btn-outline-secondary" type="button" (click)="setStatus(1)">Yes, didn't accept</button>
+                 <button class="btn btn-outline-danger" type="button" value="difficult" (click)="setStatus(2)">No</button>
+               </div></div></div>
   
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal"  >Confirm</button>
+            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="createInterview(interview)" >Confirm</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>

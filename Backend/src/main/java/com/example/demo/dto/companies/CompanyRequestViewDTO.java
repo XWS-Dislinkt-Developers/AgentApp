@@ -1,5 +1,7 @@
 package com.example.demo.dto.companies;
 
+import com.example.demo.model.users.User;
+
 import java.util.List;
 
 public class CompanyRequestViewDTO {
@@ -9,15 +11,18 @@ public class CompanyRequestViewDTO {
     private String yearOfOpening;
     private String description;
     private String numberOfEmployees;
+    private User user;
+    private String logo;
 
     public CompanyRequestViewDTO() {}
 
-    public CompanyRequestViewDTO(int id, String name, String yearOfOpening, String description, String numberOfEmployees) {
+    public CompanyRequestViewDTO(int id, String name, String yearOfOpening, String description, String numberOfEmployees, User user) {
         this.id = id;
         this.name = name;
         this.yearOfOpening = yearOfOpening;
         this.description = description;
         this.numberOfEmployees = numberOfEmployees;
+        this.user = user;
     }
 
     public int getId() {
@@ -58,5 +63,13 @@ public class CompanyRequestViewDTO {
 
     public void setNumberOfEmployees(String numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

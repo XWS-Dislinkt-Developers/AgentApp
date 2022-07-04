@@ -1,6 +1,10 @@
-
-<div> 
+<div *ngIf="anonymous"> 
   <app-nav-bar></app-nav-bar>
+</div>
+<div *ngIf="!anonymous"> 
+<app-nav-bar-profile></app-nav-bar-profile>
+</div>
+<div> 
 
 
     <div class="title">
@@ -20,49 +24,26 @@
     </div>
 
     <!-- cards-->
-<div class="card-group">
-    <div class="card" style="width: 23rem; height: 30rem; margin-left: 1rem; margin-right: 1rem;">
-        <div class="card-header"> <div class="row"> <div class="col-sm-2"> <img src="../../favicon.ico" class="logo-company">  </div> <div class="col"><h5 class="card-title">Company name</h5> </div> </div></div>
+<!-- <div class="card-group"> -->
+
+    <div class="card" style="width: 23rem; height: 30rem; margin-left: 1rem; margin-right: 1rem;" *ngFor="let c of companies" >
+        <div class="card-header"> <div class="row"> <div class="col-sm-4"> <img [src]="c.logoImage" class="logo-company">  </div> <div class="col-sm-5"><h5 class="card-title">{{c.name}}</h5> </div> </div></div>
+      
         <div class="card-body">
            
           <span>
-         <span class="fa fa-star checked"></span></span>
+         <span class="fa fa-star checked">{{c.grade}}</span></span>
          <hr/>
-         <p class="card-text">Offices: </p>
-         <p class="card-text">Employees: </p>
-          <p class="card-text">Endava je tehnološka kompanija, sa preko 20 godina iskustva u radu sa nekim od vodećih svetskih kompanija u oblasti finansija,...</p>
+         <p class="card-text">Offices: {{c.offices}} </p>
+         <p class="card-text">Employees: {{c.numberOfEmployees}} </p>
+          <p class="card-text">{{c.description}}</p>
         </div>
-        <div class="card-footer">  <a href='company/+ 1' class="card-link" style="margin-left: 8rem ;">Check company</a></div>
+        <div class="card-footer">  <a (click)="goToCompany(c.id)" class="card-link" style="margin-left: 8rem ;">Check company</a></div>
       </div>
-      <div class="card" style="width: 23rem; height: 30rem; margin-left: 1rem; margin-right: 1rem;">
-        <div class="card-header"> <div class="row"> <div class="col-sm-2"> <img src="../../favicon.ico" class="logo-company">  </div> <div class="col"><h5 class="card-title">Company name</h5> </div> </div></div>
-        <div class="card-body">
-           
-          <span>
-         <span class="fa fa-star checked"></span></span>
-         <hr/>
-         <p class="card-text">Offices: </p>
-         <p class="card-text">Employees: </p>
-          <p class="card-text">Endava je tehnološka kompanija, sa preko 20 godina iskustva u radu sa nekim od vodećih svetskih kompanija u oblasti finansija,...</p>
-         
-        </div> 
-        <div class="card-footer">  <a href='company/+ 1' class="card-link" style="margin-left: 8rem ;">Check company</a></div>
-      </div>
-      <div class="card" style="width: 23rem; height: 30rem; margin-left: 1rem; margin-right: 1rem;">
-        <div class="card-header"> <div class="row"> <div class="col-sm-2"> <img src="../../favicon.ico" class="logo-company">  </div> <div class="col"><h5 class="card-title">Company name</h5> </div> </div></div>
-        <div class="card-body">
-           
-          <span>
-         <span class="fa fa-star checked"></span></span>
-         <hr/>
-         <p class="card-text">Offices: </p>
-         <p class="card-text">Employees: </p>
-          <p class="card-text">Endava je tehnološka kompanija, sa preko 20 godina iskustva u radu sa nekim od vodećih svetskih kompanija u oblasti finansija,...</p>
-        </div> 
-        <div class="card-footer">  <button class="btn btn-outline-primary " click="checkCompany"> Check company</button></div>
-      </div>
+     
+<!-- 
 </div>
-    
+     -->
 
 <div id="signIn" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
     <div class="modal-dialog">
