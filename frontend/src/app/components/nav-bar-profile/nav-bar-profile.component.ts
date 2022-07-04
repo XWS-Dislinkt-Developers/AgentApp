@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class NavBarProfileComponent implements OnInit {
 admin: boolean = false;
+owner: boolean=false;
   request: any= 
   {
     logo: '',
@@ -75,6 +76,9 @@ admin: boolean = false;
   whoAmI(){
     if(localStorage.getItem("role") =="ROLE_ADMIN"){
       this.admin = true;
+    }
+    if(localStorage.getItem("role") =="ROLE_COMPANY_OWNER"){
+      this.owner = true;
     }
   }
   signOut(){

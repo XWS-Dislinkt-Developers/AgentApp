@@ -12,7 +12,7 @@
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#interview">Interview</a>
         </div>
         <a class="nav-link links" href="companies" >Companies </a>
-        <a class="nav-link links" href="my-company" *ngIf="!admin" >My company </a>
+        <a class="nav-link links" href="my-company" *ngIf="!admin && owner" >My company </a>
         <a class="nav-link links" href="requests" *ngIf="admin" >Company requests </a>
         <a class="nav-link links"  href="jobs">Jobs </a>
         <a class="nav-link links" data-toggle="modal" data-target="#create" href="#" *ngIf="!admin"> Register company </a>

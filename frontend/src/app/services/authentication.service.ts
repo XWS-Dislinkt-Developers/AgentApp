@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { IUser } from '../model/IUser';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,9 @@ export class AuthenticationService {
         localStorage.setItem("accessToken", response.accessToken)
         localStorage.setItem("role", response.role)
         this.router.navigate(['profile'])
+      }, 
+      err=> {
+        Swal.fire("ooopss...", "Wrong credentials. Try again.")
       }
 
     )
@@ -46,6 +50,10 @@ export class AuthenticationService {
       response=> {
         console.log(response)
        //this.login(user.email, user.password);
+       Swal.fire("success", "You successfully registrated! You can sign in now.")
+      },
+      err=> {
+        Swal.fire("ooppsss...", "This username is already taken! Try again")
       }
     )
    
