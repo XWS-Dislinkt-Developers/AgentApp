@@ -51,4 +51,9 @@ export class CompanyService {
     });
     return this._http.post<any>('http://localhost:8081/company/searchName', name, {headers: loginHeaders}).pipe()
   }
+
+  showMyCompany(){
+    return this._http.get<any>('http://localhost:8081/company/getMyCompany', {headers: this.headers()}).pipe()
+  }
+
 }

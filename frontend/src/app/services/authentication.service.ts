@@ -41,8 +41,6 @@ export class AuthenticationService {
       }
 
     )
-    
-
   }
 
     register(user: IUser){
