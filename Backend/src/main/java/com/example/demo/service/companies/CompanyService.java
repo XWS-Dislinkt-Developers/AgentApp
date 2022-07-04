@@ -2,6 +2,7 @@ package com.example.demo.service.companies;
 
 import com.example.demo.dto.companies.CompanyChangeDTO;
 import com.example.demo.model.companies.Company;
+import com.example.demo.model.users.User;
 import com.example.demo.repository.companies.CompanyRepository;
 import org.springframework.stereotype.Service;
 
@@ -45,4 +46,9 @@ public class CompanyService {
     public void save(Company company) {
         this.companyRepository.save(company);
     }
+
+    public Company getCompanyForUser(User user) {
+        return this.companyRepository.findByOwner(user.getEmail());
+    }
+
 }

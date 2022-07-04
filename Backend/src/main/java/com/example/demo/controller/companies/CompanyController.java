@@ -2,10 +2,13 @@ package com.example.demo.controller.companies;
 
 import com.example.demo.dto.companies.*;
 import com.example.demo.model.companies.Company;
+import com.example.demo.model.users.User;
 import com.example.demo.service.companies.CompanyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,5 +69,14 @@ public class CompanyController {
         }
 
         return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyRole('COMPANY_OWNER')")
+    @GetMapping(value = "/getMyCompany")
+    public ResponseEntity<CompanyDTO> getCompany(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User)authentication.getPrincipal();
+        Company company = this.companyService.getCompanyForUser(user);
+        return new ResponseEntity<>(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), company.getGrade(), company.getLogoImage(), company.getNumberOfEmployees()), HttpStatus.OK);
     }
 }

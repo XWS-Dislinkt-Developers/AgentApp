@@ -18,7 +18,8 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
     List<Company> getCompaniesFullSearch(String name);
     @Query(value = "select distinct c from Company c left join fetch c.offices o ")
     List<Company> findAll();
-    @Query(value = "select distinct c from Company c left join fetch c.companyOwner o where o.email = ?1")
+    @Query(value = "select distinct c from Company c left join fetch c.companyOwner o left join fetch c.offices office where o.email = ?1")
     Company findByOwner(String email);
+
 
 }
