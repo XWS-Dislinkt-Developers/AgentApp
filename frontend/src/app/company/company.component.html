@@ -78,37 +78,57 @@
     </div>
 
     <div id="comments" class="container tab-pane fade">
-      <div class="card-group"> 
-      <div class="card">
+     
+      <div class="card" *ngFor=" let comment of comments">
         
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-3">
-                 <img src="../../assets/background.jpg" style="width:100%; height: 100%;"> 
-                </div>
-                <div class="col-sm-9">
+                
+                <div class="col-sm-11">
                     <div class="row">
-                      <h4 class="card-title" style="margin-left:1rem">Senior automation quality engineer</h4> 
+                      <h4 class="card-title" style="margin-left:1rem">{{comment.title}}</h4> 
                       </div>
 
                       <div class="row"> 
-                         <div class="col-sm-4">
-                      <h5 class="card-title" >Company name</h5> 
+                         <div class="col-sm-2">
+                      <p >Grade</p> 
                     </div>
-                    <div class="col">
+                    <div class="col-sm-2">
                         <span>
-                            <span class="fa fa-star checked"></span> 1 </span>
+                            <span class="fa fa-star checked"></span> {{comment.grade}} </span>
                       </div>
                      
                       </div>
+                      <label style="margin-right: 2rem ;"> Position: {{comment.position}}</label>
+                      <label style="margin-right: 2rem ;"> Experience: {{comment.levelOfExperience}}</label>
+                      <label *ngIf="comment.currentlyEmployed" style="margin-right: 2rem ;"> Currently employed: Yes </label>
+                      <label *ngIf="!comment.currentlyEmployed" style="margin-right: 2rem ;"> Currently employed: No </label>
+                      <label  style="margin-right: 2rem ;"> Engagement: {{comment.engagement}} </label>
+                      <label  style="margin-right: 2rem ;"> Position: {{comment.position}} </label>
+                      <div class="row"> 
+                        <div class="col-sm-2">
+                     <p >Positive</p> 
+                   </div>
+                   <div class="col-sm-9">
+                    <label  style="margin-right: 2rem ;">  {{comment.positive}} </label>
+                     </div>
+                    
+                     </div>
+                     <div class="row"> 
+                      <div class="col-sm-2">
+                   <p >Negative</p> 
+                 </div>
+                 <div class="col-sm-9">
+                  <label  style="margin-right: 2rem ;">  {{comment.negative}} </label>
+                   </div>
                   
-                   
-                
+                   </div>
+
                     </div>
             </div>
         </div>
     </div>
-  </div>
+
   </div>
     <div id="salaryandben" class="container tab-pane fade"> </div>
     <div id="interview" class="container tab-pane fade"> </div>
