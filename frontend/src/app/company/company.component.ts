@@ -14,6 +14,9 @@ anonymous: boolean= true;
 id : number =0;
   company!: ICompany;
   comments: any;
+  salaryAndBenefits: any
+  interviews: any
+
   constructor(private companyService: CompanyService,private route: ActivatedRoute, private impresionService: ImpresionsService,
     private router: Router) { }
 
@@ -21,6 +24,9 @@ id : number =0;
     this.whoAmI();
     this.id=Number(this.route.snapshot.paramMap.get('id')); 
     this.showCompany(this.id);
+    this.showInterviews()
+    this.showSalaryAndBenefits()
+    
 
   }
   showCompany(id: any){
@@ -32,6 +38,18 @@ id : number =0;
   showComments(){
     this.impresionService.getCommentsForCompany(this.id).subscribe( results=> {
     this.comments= results;
+    })
+  }
+  showSalaryAndBenefits(){
+    this.impresionService.getSalaryAndBenefitsForCompany(this.id).subscribe( results=> {
+    this.salaryAndBenefits= results;
+    })
+  }
+  showInterviews(){
+
+    this.impresionService.getInterviewsForCompany(this.id).subscribe( results=> {
+    this.interviews= results;
+    console.log(this.interviews[0])
     })
   }
   whoAmI(){

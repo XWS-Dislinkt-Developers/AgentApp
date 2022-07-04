@@ -41,10 +41,10 @@
       <a class="nav-link" href="#comments" (click)="showComments()" data-toggle="tab" style="font-size: larger;">Comments</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#salaryandben"  data-toggle="tab" style="font-size: larger;">Salary and benefits</a>
+      <a class="nav-link" href="#salaryandben" (click)="showSalaryAndBenefits()" data-toggle="tab" style="font-size: larger;">Salary and benefits</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#interview"   data-toggle="tab" style="font-size: larger;">Interview</a>
+      <a class="nav-link" href="#inte" (click)="showInterviews()"  data-toggle="tab" style="font-size: larger;">Interview</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#jobs"  data-toggle="tab" style="font-size: larger;">Jobs</a>
@@ -130,8 +130,74 @@
     </div>
 
   </div>
-    <div id="salaryandben" class="container tab-pane fade"> </div>
-    <div id="interview" class="container tab-pane fade"> </div>
+    <div id="salaryandben" class="container tab-pane fade" >
+      
+      <div class="card" *ngFor=" let s of salaryAndBenefits">
+        
+        <div class="card-body">
+            <div class="row">
+                
+                <div class="col-sm-11">
+                    <div class="row">
+                      <h4 class="card-title" style="margin-left:1rem">{{s.position}}</h4> 
+                      </div>
+
+                     
+                      <label style="margin-right: 2rem ;"> Experience: {{s.levelOfExperience}}</label>
+                      <label  style="margin-right: 2rem ;"> Engagement: {{s.engagement}} </label>
+                      <label  style="margin-right: 2rem ;"> Benefits: {{s.benefits}} </label>
+                     
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <div id="inte" class="container tab-pane fade" >
+      
+      <div class="card" *ngFor=" let i of interviews">
+        
+        <div class="card-body">
+            <div class="row">
+                
+                <div class="col-sm-11">
+                    <div class="row">
+                      <h4 class="card-title" style="margin-left:1rem">{{i.title}}</h4> 
+                      </div>
+
+                     
+                      <label style="margin-right: 2rem ;"> Position: {{i.position}}</label>
+                      <label style="margin-right: 2rem ;"> Year of interview: {{i.yearOfInterview}}</label>
+                      <label  style="margin-right: 2rem ;"> Interview difficult: {{i.interviewDificulty}} </label>
+                      <label  style="margin-right: 2rem ;"> Offer status: {{i.offerStatus}} </label>
+                
+                     
+                      <div class="row"> 
+                        <div class="col-sm-2">
+                     <p >HR interview:</p> 
+                   </div>
+                   <div class="col-sm-9">
+                    <label  style="margin-right: 2rem ;">  {{i.HRInterview}} </label>
+                     </div>
+                    
+                     </div>
+                     <div class="row"> 
+                      <div class="col-sm-2">
+                   <p >Technical interview</p> 
+                 </div>
+                 <div class="col-sm-9">
+                  <label  style="margin-right: 2rem ;">  {{i.technicalInterview}} </label>
+                   </div>
+                  
+                   </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
     <div id="jobs" class="container tab-pane fade"> 
 
       <div class="card">
