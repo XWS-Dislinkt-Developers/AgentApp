@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ICompanyRequest } from 'src/app/model/ICompanyRequest';
+import { INewComment } from 'src/app/model/INewComment';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CompanyService } from 'src/app/services/company.service';
+import { ImpresionsService } from 'src/app/services/impresions.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,24 +23,28 @@ admin: boolean = false;
     positions: [],
     numberOfEmployees: ''
   };
-  request2: ICompanyRequest= 
-  {
-    logo: '',
-    name: '',
-    yearOfOpening: '',
-    offices: [],
-    description: '',
-    positions: [],
-    numberOfEmployees: ''
-  };
+  comment: INewComment ={
+    companyId: undefined,
+    position: '',
+    currentlyEmployed: false,
+    positive: '',
+    negative: '',
+    projects: '',
+    grade: undefined,
+    levelOfExperience: undefined,
+    engagement: undefined,
+    title: ''
+  }
   office : string='';
   position: string='';
+  name: string=""
 
-// convert image
-isImageSaved: boolean = false;
-cardImageBase64: string = '';
+  // convert image
+  isImageSaved: boolean = false;
+  cardImageBase64: string = '';
+  company: any;
 
-  constructor(private authService: AuthenticationService,private companyService: CompanyService) { }
+  constructor(private authService: AuthenticationService,private companyService: CompanyService, private impresionService: ImpresionsService) { }
 
   ngOnInit(): void {
     this.whoAmI()
@@ -52,7 +58,13 @@ cardImageBase64: string = '';
   signOut(){
     this.authService.signOut()
   }
-
+  search(searchValue: any){
+    console.log(searchValue)
+  this.companyService.searchCompany(searchValue).subscribe( response => {
+    this.company = response;
+    this.comment.companyId = this.company[0].id
+  })
+  }
   companyRegistration(){
     console.log(this.request)
    this.companyService.createCompanyRequest(this.request).subscribe(
@@ -63,6 +75,25 @@ cardImageBase64: string = '';
    )
 
   }
+  
+createComment(comment : any){
+  this.comment.grade= parseFloat(comment.grade);
+  this.comment.engagement = parseInt(comment.engagement);
+  this.comment.levelOfExperience = parseInt(comment.levelOfExperience)
+  this.comment.companyId = parseInt(comment.companyId)
+  if(comment.currentlyEmployed == "true"){
+    this.comment.currentlyEmployed =true;
+  }else {
+    this.comment.currentlyEmployed=false;
+  }
+  console.log(this.comment)
+  this.impresionService.saveComment(this.comment).subscribe( response=> {
+Swal.fire("Your comment is added", "success");
+  },
+  err => {
+Swal.fire("Something went wrong", "opssss...")
+  })
+}
   addOffice(office: string){
     this.request.offices.push(office);
     this.office =""
@@ -89,5 +120,9 @@ cardImageBase64: string = '';
     }
   }
 
- 
+ setCompanyId(c : any){
+  alert(c)
+  alert(c.id)
+  this.comment.companyId =c.id;
+ }
 }

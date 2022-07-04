@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ICompany } from 'src/app/model/ICompany';
 import { INewComment } from 'src/app/model/INewComment';
 import { IUser } from 'src/app/model/IUser';
 import { AuthenticationService } from 'src/app/services/authentication.service';

@@ -9,7 +9,4 @@ export interface IUser {
     number: string,
     telephone: string,
     surname: string,
-
-
-
 }
