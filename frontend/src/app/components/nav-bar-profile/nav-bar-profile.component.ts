@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ICompanyRequest } from 'src/app/model/ICompanyRequest';
 import { INewComment } from 'src/app/model/INewComment';
+import { INewInterview } from 'src/app/model/INewInterview';
+import { INewSalaryAndBenefits } from 'src/app/model/INewSalaryAndBenefits';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { ImpresionsService } from 'src/app/services/impresions.service';
@@ -35,6 +37,26 @@ admin: boolean = false;
     engagement: undefined,
     title: ''
   }
+  salaryAndBenefits: INewSalaryAndBenefits={
+    companyId: undefined,
+    position: '',
+    salary: 0,
+    benefits: [],
+    levelOfExperience: undefined,
+    engagement: undefined
+  }
+
+  interview: INewInterview={
+    idCompany: undefined,
+    yearOfInterview: '',
+    position: '',
+    HRInterview: '',
+    technicalInterview: '',
+    interviewDifficulty: '',
+    offerStatus: '',
+    title: ''
+  }
+  
   office : string='';
   position: string='';
   name: string=""
@@ -62,7 +84,8 @@ admin: boolean = false;
     console.log(searchValue)
   this.companyService.searchCompany(searchValue).subscribe( response => {
     this.company = response;
-    this.comment.companyId = this.company[0].id
+    this.comment.companyId = this.company[0].id;
+    this.salaryAndBenefits.companyId = this.company[0].id
   })
   }
   companyRegistration(){
@@ -94,6 +117,19 @@ Swal.fire("Your comment is added", "success");
 Swal.fire("Something went wrong", "opssss...")
   })
 }
+
+createSalaryAndBenefit(salaryAndBen : INewSalaryAndBenefits){
+  this.salaryAndBenefits.engagement = parseInt(salaryAndBen.engagement);
+  this.salaryAndBenefits.levelOfExperience = parseInt(salaryAndBen.levelOfExperience)
+ 
+  console.log(this.salaryAndBenefits)
+  this.impresionService.saveSalaryAndBenefits(this.salaryAndBenefits).subscribe( response=> {
+Swal.fire("success","Your comment is added");
+  },
+  err => {
+Swal.fire("opssss...","Something went wrong")
+  })
+}
   addOffice(office: string){
     this.request.offices.push(office);
     this.office =""
@@ -119,6 +155,13 @@ Swal.fire("Something went wrong", "opssss...")
       reader.readAsDataURL(fileInput.target.files[0]);
     }
   }
+
+handleBenefit(benefit: string){
+  console.log(benefit)
+  this.salaryAndBenefits.benefits.push(benefit);
+  console.log("dodao sam benefit")
+
+}
 
  setCompanyId(c : any){
   alert(c)
