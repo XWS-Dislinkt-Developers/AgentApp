@@ -15,10 +15,10 @@
         <div class="row"> 
 
        <div class="col-sm-9">
-        <input type="text" class="form-control " placeholder="Company name or city" > 
+        <input type="text" class="form-control " placeholder="Company name or city" [(ngModel)]="param"> 
        </div>
        <div class="col-sm-3">
-         <button class="btn btn-outline-primary"> Search</button>
+         <button class="btn btn-outline-primary" (click)="search(param)"> Search</button>
     </div>      
     </div>
     </div>
@@ -33,7 +33,7 @@
         <div class="card-body">
            
           <span>
-         <span class="fa fa-star checked">{{c.grade | number}}</span></span>
+         <span class="fa fa-star checked">{{c.grade}}</span></span>
          <hr/>
          <p class="card-text">Offices: {{c.offices}} </p>
          <p class="card-text">Employees: {{c.numberOfEmployees}} </p>

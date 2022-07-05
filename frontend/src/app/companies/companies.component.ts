@@ -12,7 +12,7 @@ import { CompanyService } from '../services/company.service';
 export class CompaniesComponent implements OnInit {
   anonymous: boolean = true;
   companies: any;
-
+param: string=""
   constructor(private companyService: CompanyService, private router: Router) { }
 
   ngOnInit(): void {
@@ -35,6 +35,10 @@ this.companyService.getAllCompanies().subscribe( response => {
 })
 }
 
-
+search(param: string){
+  this.companyService.searchCompany(param).subscribe(res=>{
+    this.companies = res;
+  })
+}
 
 }
