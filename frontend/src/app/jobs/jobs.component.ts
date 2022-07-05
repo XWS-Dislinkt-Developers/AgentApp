@@ -11,6 +11,7 @@ import { IJobOfferView } from '../model/IJobOfferView'
 export class JobsComponent implements OnInit {
   anonymous: boolean= true;
   jobs: any;
+  param: string=""
 
   constructor(private jobService: JobsService) { }
 
@@ -29,6 +30,12 @@ getAllJobs(){
   this.jobService.getAllJobs().subscribe(res=>{
    this.jobs= res;
    console.log(this.jobs)
+  })
+}
+
+search(param: string){
+  this.jobService.search(param).subscribe(res=> {
+    this.jobs=res;
   })
 }
 }

@@ -48,11 +48,11 @@ public class JobOfferController {
     }
 
     @PostMapping(value = "/search")
-    public ResponseEntity<List<JobOfferDTO>> search(@RequestBody CompanySearchDTO search){
-        ArrayList<JobOfferDTO> ret = new ArrayList<>();
+    public ResponseEntity<List<JobOffersViewDTO>> search(@RequestBody String search){
+        ArrayList<JobOffersViewDTO> ret = new ArrayList<>();
 
-        for (JobOffer jobOffer : this.jobOfferService.search(search.getSearchParam())){
-            ret.add(new JobOfferDTO(jobOffer.getPosition(), jobOffer.getLevelOfExperience(), jobOffer.getJobDescription(), jobOffer.getDailyActivities(), jobOffer.getRequirements(), jobOffer.getPromoteOnDislinkt(), jobOffer.getBenefits(), jobOffer.getExpires()));
+        for (JobOffer jobOffer : this.jobOfferService.search(search)){
+            ret.add(new JobOffersViewDTO(jobOffer.getId(),jobOffer.getPosition(), jobOffer.getLevelOfExperience(), jobOffer.getJobDescription(), jobOffer.getDailyActivities(), jobOffer.getRequirements(),  jobOffer.getBenefits(), jobOffer.getExpires(),jobOffer.getCompany().getLogoImage(), jobOffer.getCompany().getName(),  jobOffer.getCompany().getGrade()));
         }
 
         return new ResponseEntity<>(ret, HttpStatus.OK);

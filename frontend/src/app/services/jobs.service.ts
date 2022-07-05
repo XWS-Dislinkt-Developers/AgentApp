@@ -25,4 +25,8 @@ export class JobsService {
       Authorization: "Bearer " + localStorage.getItem("accessToken"),
     });
   }
+
+  search(param: string){
+    return this._http.post('http://localhost:8081/jobOffer/search', param ).pipe()
+  }
 }
