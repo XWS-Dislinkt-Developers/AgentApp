@@ -24,26 +24,27 @@
     </div>
 
     <!-- cards-->
-<!-- <div class="card-group"> -->
-
-    <div class="card" style="width: 23rem; height: 30rem; margin-left: 1rem; margin-right: 1rem;" *ngFor="let c of companies" >
+ <div class="company-container"> 
+  <div class="row"> 
+  <div class="col" *ngFor="let c of companies" > 
+    <div class="card" style="width: 23rem; height: 20rem; margin-left: 1rem; margin-right: 1rem;"  >
         <div class="card-header"> <div class="row"> <div class="col-sm-4"> <img [src]="c.logoImage" class="logo-company">  </div> <div class="col-sm-5"><h5 class="card-title">{{c.name}}</h5> </div> </div></div>
       
         <div class="card-body">
            
           <span>
-         <span class="fa fa-star checked">{{c.grade}}</span></span>
+         <span class="fa fa-star checked">{{c.grade | number}}</span></span>
          <hr/>
          <p class="card-text">Offices: {{c.offices}} </p>
          <p class="card-text">Employees: {{c.numberOfEmployees}} </p>
-          <p class="card-text">{{c.description}}</p>
+         
         </div>
         <div class="card-footer">  <a (click)="goToCompany(c.id)" class="card-link" style="margin-left: 8rem ;">Check company</a></div>
       </div>
-     
-<!-- 
+     </div>
 </div>
-     -->
+</div>
+    
 
 <div id="signIn" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
     <div class="modal-dialog">

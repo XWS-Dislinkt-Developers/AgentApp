@@ -37,16 +37,11 @@
                     </div>
                     <div class="col-sm-3">
                         <span>
-                            <span class="fa fa-star checked"></span> {{j.grade}} </span>
+                            <span class="fa fa-star checked"></span> {{j.grade | number}} </span>
                       </div>
                       </div>
                      
-                      <div class="row"> 
-                        <div class="col-sm-9" >
-                     <p class="card-title" ><label *ngFor="let s of j.requirements" style="background-color: rgb(112, 140, 180); opacity: 0.5; color: white; padding: 5px; border-radius: 20%;"> {{s}} </label> </p> 
-                   </div>
-                  
-                     </div>
+                     
                      <div class="row"> 
                       <div class="col-sm-9" >
                    <p class="card-title" ><label > {{j.benefits}} </label> </p> 
@@ -68,6 +63,12 @@
             </div>
             
                </div>
+               <div class="row"> 
+                <div class="col-sm-9" >
+             <p class="card-title" ><label *ngFor="let s of j.requirements" style="background-color: rgb(112, 140, 180); margin-right: 1rem;opacity: 0.5; color: white; padding: 5px; border-radius: 20%;"> {{s}} </label> </p> 
+           </div>
+          
+             </div>
                      </div>
                   
                     </div>

@@ -18,6 +18,7 @@ export class CompaniesComponent implements OnInit {
   ngOnInit(): void {
     this.whoAmI()
     this.getAllCompanies()
+  
   }
 goToCompany(id: any){
   this.router.navigate(['company/'+id]);
@@ -33,5 +34,7 @@ this.companyService.getAllCompanies().subscribe( response => {
   this.companies = response;
 })
 }
+
+
 
 }
