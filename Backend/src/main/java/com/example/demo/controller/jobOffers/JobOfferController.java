@@ -2,6 +2,7 @@ package com.example.demo.controller.jobOffers;
 
 import com.example.demo.dto.companies.CompanySearchDTO;
 import com.example.demo.dto.jobOffers.JobOfferDTO;
+import com.example.demo.dto.jobOffers.JobOffersViewDTO;
 import com.example.demo.model.jobOffers.JobOffer;
 import com.example.demo.model.users.User;
 import com.example.demo.service.jobOffers.JobOfferService;
@@ -27,11 +28,11 @@ public class JobOfferController {
     }
 
     @GetMapping(value = "/getAll")
-    public ResponseEntity<List<JobOfferDTO>> getAll(){
-        ArrayList<JobOfferDTO> ret = new ArrayList<>();
+    public ResponseEntity<List<JobOffersViewDTO>> getAll(){
+        ArrayList<JobOffersViewDTO> ret = new ArrayList<>();
 
-        for (JobOffer jobOffer : this.jobOfferService.getAll()){
-            ret.add(new JobOfferDTO(jobOffer.getPosition(), jobOffer.getLevelOfExperience(), jobOffer.getJobDescription(), jobOffer.getDailyActivities(), jobOffer.getRequirements(), jobOffer.getPromoteOnDislinkt(), jobOffer.getBenefits(), jobOffer.getExpires()));
+        for (JobOffer jobOffer : this.jobOfferService.getJobOffersWithCompany()){
+            ret.add(new JobOffersViewDTO(jobOffer.getId(),jobOffer.getPosition(), jobOffer.getLevelOfExperience(), jobOffer.getJobDescription(), jobOffer.getDailyActivities(), jobOffer.getRequirements(),  jobOffer.getBenefits(), jobOffer.getExpires(),jobOffer.getCompany().getLogoImage(), jobOffer.getCompany().getName(),  jobOffer.getCompany().getGrade()));
         }
 
         return new ResponseEntity<>(ret, HttpStatus.OK);

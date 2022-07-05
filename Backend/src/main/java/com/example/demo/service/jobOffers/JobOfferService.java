@@ -38,6 +38,8 @@ public class JobOfferService {
         return this.jobOfferRepository.searchJobOffers("%"+param+"%");
     }
 
-
+    public List<JobOffer> getJobOffersWithCompany(){
+        return this.jobOfferRepository.getJobOffersWithCompany();
+    }
 
 }

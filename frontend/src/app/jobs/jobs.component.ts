@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { JobsService } from '../services/jobs.service';
+import { IJobOfferView } from '../model/IJobOfferView'
 
 @Component({
   selector: 'app-jobs',
@@ -7,15 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobsComponent implements OnInit {
   anonymous: boolean= true;
+  jobs: any;
 
-  constructor() { }
+  constructor(private jobService: JobsService) { }
 
   ngOnInit(): void {
     this.whoAmI()
+    this.getAllJobs()
   }
   whoAmI(){
     if(localStorage.getItem("accessToken") != null){
       this.anonymous = false;
     }
+}
+
+
+getAllJobs(){
+  this.jobService.getAllJobs().subscribe(res=>{
+   this.jobs= res;
+   console.log(this.jobs)
+  })
 }
 }

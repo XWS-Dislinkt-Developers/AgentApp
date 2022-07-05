@@ -14,7 +14,7 @@ export class JobsService {
     return this._http.get('http://localhost:8081/jobOffer/getForCompany/'+ id).pipe()
   }
   getAllJobs(){
-    return this._http.get('http://localhost:8081/jobOffer/getAll/').pipe()
+    return this._http.get('http://localhost:8081/jobOffer/getAll').pipe()
   }
 
   createNewJob(job: any) {
