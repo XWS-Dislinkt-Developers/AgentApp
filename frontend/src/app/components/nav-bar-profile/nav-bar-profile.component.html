@@ -6,6 +6,7 @@
         <a class="nav-link dropdown-toggle links" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Create impression
         </a>
+        <a class="nav-link links" *ngIf="owner" href="#" data-toggle="modal" data-target="#token"> Promotion token</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#"  data-toggle="modal" data-target="#comment">Comment</a>
           <a class="dropdown-item" href="#" data-toggle="modal" data-target="#salandben">Salary and benefits</a>
@@ -15,7 +16,7 @@
         <a class="nav-link links" href="my-company" *ngIf="!admin && owner" >My company </a>
         <a class="nav-link links" href="requests" *ngIf="admin" >Company requests </a>
         <a class="nav-link links"  href="jobs">Jobs </a>
-        <a class="nav-link links" data-toggle="modal" data-target="#create" href="#" *ngIf="!admin"> Register company </a>
+        <a class="nav-link links" data-toggle="modal" data-target="#create" href="#" *ngIf="!admin && !owner"> Register company </a>
         <a class="nav-link linkSign" (click)="signOut()"  style="margin-bottom: 1rem; color: white; background-color: dimgrey;">Sign out  </a>
     
       </nav>
@@ -83,10 +84,6 @@
                         <label style="font-size: medium;">Description </label>  
                         <textarea class="form-control" [(ngModel)]="request.description" > </textarea>
                    
-                     
-                     
-                     
-                     
                       <div class="row" style="margin-top: 1rem;">
                         <div class="col-sm-3"><label style="font-size: medium;" > Logo</label> </div>
                         <div class="col-sm-9"> <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control" >  </div>
@@ -97,8 +94,6 @@
                           <img [src]="cardImageBase64" style="width: 100px;height:100px;" />
                         </ng-container>
                       </div>
-                         
-                
             </div>
   
         </div>
@@ -433,5 +428,27 @@
   </div>
   
   </div>
+
+<!-- modal for promotion token -->
+<div id="token" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Promotion for Dislinkt </h4>
+      </div>
+      <div class="modal-body">
+          <div class="form">
+            <label style="font-size: medium;">Token for Dislinkt</label>
+            <input type="text" class="form-control" placeholder="Enter Token" [(ngModel)]="token" > 
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="addToken()" >Confirm</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
