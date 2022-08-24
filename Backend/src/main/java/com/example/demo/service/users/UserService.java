@@ -1,6 +1,5 @@
 package com.example.demo.service.users;
 
-import com.example.demo.dto.users.UserDTO;
 import com.example.demo.dto.users.UserRequest;
 import com.example.demo.dto.users.UserUpdateDTO;
 import com.example.demo.model.users.Role;
@@ -68,6 +67,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         user.setAddress(updatedUser.getAddress());
         user.setTelephone(updatedUser.getTelephone());
+        this.userRepository.save(user);
+    }
+
+    public void addToken(String token, User loggedUser) {
+        User user = this.userRepository.findById(loggedUser.getId());
+        user.setApiToken(token);
         this.userRepository.save(user);
     }
 }
