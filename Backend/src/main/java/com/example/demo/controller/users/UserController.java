@@ -1,5 +1,6 @@
 package com.example.demo.controller.users;
 
+import com.example.demo.dto.users.TokenDTO;
 import com.example.demo.dto.users.UserDTO;
 import com.example.demo.dto.users.UserUpdateDTO;
 import com.example.demo.model.users.User;
@@ -39,6 +40,15 @@ public class UserController {
     @PostMapping(value="/update",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateUser(@RequestBody UserUpdateDTO updatedUser){
         userService.update(updatedUser);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyRole('COMPANY_OWNER')")
+    @PostMapping(value="/addToken",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateUser(@RequestBody TokenDTO tokenDto){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User)authentication.getPrincipal();
+        userService.addToken(tokenDto.getToken(), user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
