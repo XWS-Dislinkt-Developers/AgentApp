@@ -9,7 +9,7 @@ export class UserService {
   constructor(private _http: HttpClient) { }
 
   addPromotionToken(token: string){
-    return this._http.post('http://localhost:8089/user/addToken', {"token":token}, {headers: this.headers()})
+    return this._http.post('http://localhost:8090/user/addToken', {"token":token}, {headers: this.headers()})
   }
   
   headers(){

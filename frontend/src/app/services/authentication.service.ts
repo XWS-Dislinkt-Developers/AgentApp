@@ -24,7 +24,7 @@ export class AuthenticationService {
       'password': password
     };
 
-    return this._http.post<any>('http://localhost:8089/auth/login', body, { 'headers': loginHeaders })
+    return this._http.post<any>('http://localhost:8090/auth/login', body, { 'headers': loginHeaders })
     .subscribe(
       response=> {
         console.log(response)
@@ -41,7 +41,7 @@ export class AuthenticationService {
   }
 
     register(user: IUser){
-    this._http.post<any>('http://localhost:8089/auth/signup', user ).subscribe(
+    this._http.post<any>('http://localhost:8090/auth/signup', user ).subscribe(
       response=> {
         console.log(response)
        //this.login(user.email, user.password);
@@ -59,5 +59,4 @@ export class AuthenticationService {
     this.router.navigate([''])
   }
 }
-
 
