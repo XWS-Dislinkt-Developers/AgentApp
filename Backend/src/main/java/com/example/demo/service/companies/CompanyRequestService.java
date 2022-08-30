@@ -34,7 +34,7 @@ public class CompanyRequestService {
     public void approveRequest(int id) {
         CompanyRegistrationRequest request = this.companyRequestRepository.findById(id);
         User user =  userService.setUserToCompanyOwner(request.getCompanyOwner());
-       this.companyRepository.save(new Company(request.getLogo(), request.getName(), request.getYearOfOpening(), request.getOffices(), user, request.getDescription(), request.getPositions(), request.getNumberOfEmployees()));
+       this.companyRepository.save(new Company(request.getLogo(), request.getName(), request.getYearOfOpening(), request.getOffices(), user, request.getDescription(), request.getPositions(), request.getNumberOfEmployees(), 1));
         this.companyRequestRepository.delete(request);
     }
 

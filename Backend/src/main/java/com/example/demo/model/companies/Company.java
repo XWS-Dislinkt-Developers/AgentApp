@@ -56,7 +56,7 @@ public class Company {
 
     public Company() {}
 
-    public Company(String logoImage, String name, String yearOfOpening, List<String> offices, User companyOwner, String description, List<String> positions, String numberOfEmployees) {
+    public Company(String logoImage, String name, String yearOfOpening, List<String> offices, User companyOwner, String description, List<String> positions, String numberOfEmployees, double grade) {
         this.logoImage = logoImage;
         this.name = name;
         this.yearOfOpening = yearOfOpening;
@@ -65,6 +65,7 @@ public class Company {
         this.description = description;
         this.positions = positions;
         this.numberOfEmployees = numberOfEmployees;
+        this.grade = grade;
     }
 
     public int getId() {

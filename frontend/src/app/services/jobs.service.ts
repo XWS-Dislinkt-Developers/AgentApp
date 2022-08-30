@@ -11,14 +11,14 @@ export class JobsService {
 
 
   getJobsForCompany(id: any){
-    return this._http.get('http://localhost:8081/jobOffer/getForCompany/'+ id).pipe()
+    return this._http.get('http://localhost:8089/jobOffer/getForCompany/'+ id).pipe()
   }
   getAllJobs(){
-    return this._http.get('http://localhost:8081/jobOffer/getAll').pipe()
+    return this._http.get('http://localhost:8089/jobOffer/getAll').pipe()
   }
 
   createNewJob(job: any) {
-    return this._http.post('http://localhost:8081/jobOffer/save', job, {headers: this.headers()}).pipe()
+    return this._http.post('http://localhost:8089/jobOffer/save', job, {headers: this.headers()}).pipe()
   }
   headers(){
     return   new HttpHeaders({
@@ -27,6 +27,6 @@ export class JobsService {
   }
 
   search(param: string){
-    return this._http.post('http://localhost:8081/jobOffer/search', param ).pipe()
+    return this._http.post('http://localhost:8089/jobOffer/search', param ).pipe()
   }
 }

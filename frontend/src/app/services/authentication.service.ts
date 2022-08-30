@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { IUser } from '../model/IUser';
 import Swal from 'sweetalert2';
 
@@ -27,7 +24,7 @@ export class AuthenticationService {
       'password': password
     };
 
-    return this._http.post<any>('http://localhost:8081/auth/login', body, { 'headers': loginHeaders })
+    return this._http.post<any>('http://localhost:8089/auth/login', body, { 'headers': loginHeaders })
     .subscribe(
       response=> {
         console.log(response)
@@ -44,7 +41,7 @@ export class AuthenticationService {
   }
 
     register(user: IUser){
-    this._http.post<any>('http://localhost:8081/auth/signup', user ).subscribe(
+    this._http.post<any>('http://localhost:8089/auth/signup', user ).subscribe(
       response=> {
         console.log(response)
        //this.login(user.email, user.password);

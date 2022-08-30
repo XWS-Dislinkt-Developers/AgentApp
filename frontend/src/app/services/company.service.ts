@@ -25,23 +25,23 @@ export class CompanyService {
     const loginHeaders = new HttpHeaders({
       Authorization: "Bearer " + localStorage.getItem("accessToken"),
     });
-    return this._http.get<Observable<ICompanyRegistrationRequest>>('http://localhost:8081/companyRequest/getAll', {'headers': this.headers()}).pipe( )
+    return this._http.get<Observable<ICompanyRegistrationRequest>>('http://localhost:8089/companyRequest/getAll', {'headers': this.headers()}).pipe( )
   }
   
  acceptRequest(id: any) {
-  return this._http.post('http://localhost:8081/companyRequest/approveRequest', id, {'headers': this.headers()})
+  return this._http.post('http://localhost:8089/companyRequest/approveRequest', id, {'headers': this.headers()})
   }
 
   createCompanyRequest(request: ICompanyRequest) {
-    return this._http.post('http://localhost:8081/companyRequest', request, {'headers': this.headers()})
+    return this._http.post('http://localhost:8089/companyRequest', request, {'headers': this.headers()})
     }
 
   getAllCompanies(){
-    return this._http.get<Observable<ICompany>>('http://localhost:8081/company/getAll').pipe()
+    return this._http.get<Observable<ICompany>>('http://localhost:8089/company/getAll').pipe()
   }
 
   showCompany(id: number){
-    return this._http.get<any>('http://localhost:8081/company/'+ id).pipe()
+    return this._http.get<any>('http://localhost:8089/company/'+ id).pipe()
   }
 
   searchCompany(name: string){
@@ -49,11 +49,11 @@ export class CompanyService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    return this._http.post<any>('http://localhost:8081/company/searchName', name, {headers: loginHeaders}).pipe()
+    return this._http.post<any>('http://localhost:8089/company/searchName', name, {headers: loginHeaders}).pipe()
   }
 
   showMyCompany(){
-    return this._http.get<any>('http://localhost:8081/company/getMyCompany', {headers: this.headers()}).pipe()
+    return this._http.get<any>('http://localhost:8089/company/getMyCompany', {headers: this.headers()}).pipe()
   }
 
 }
