@@ -3,7 +3,7 @@
     <nav class="nav nav-pills nav-justified">
         <a class="nav-link  logoImg"  > <img class="logoImg" src="../../favicon.ico"> </a>
         <a class="nav-link  logo"  href="profile"  style="list-style-type: none ;"> Jobby</a>
-        <a class="nav-link dropdown-toggle links" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle links" *ngIf="!admin && !owner" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Create impression
         </a>
         <a class="nav-link links" *ngIf="owner" href="#" data-toggle="modal" data-target="#token"> Promotion token</a>
@@ -43,26 +43,7 @@
                <input type="number" class="form-control" placeholder="Enter number" [(ngModel)]="request.numberOfEmployees" >
 
                <label style="font-size: medium;">Offices </label>
-               
-               <!-- <div >     
-               <div class="row">
-                <div class="col-sm-7"> 
-                        <input type="text" class="form-control" placeholder="Street"   > 
-                        </div>
-                       <div class="col-sm-5"> 
-                          <input type="text" class="form-control" placeholder="Number" > 
-                        </div> 
-                    </div>
-                    <div class="row">
-                          <div class="col-sm-7"> 
-                          <input type="text" class="form-control" placeholder="City" > `  
-                          </div>
-                          <div class="col-sm-5"> 
-                            <input type="text" class="form-control" placeholder="Country" > 
-                          </div>
-                    </div>
-                  </div>  -->
-               
+              
                     <div class="row">
                       <div class="col-sm-9">  <input type="text" class="form-control" placeholder="offices" [(ngModel)]="office"  >   </div>
                        <div class="col-sm-2"><button type="button" class="btn btn-secondary" (click)="addOffice(office)"> add</button> </div>

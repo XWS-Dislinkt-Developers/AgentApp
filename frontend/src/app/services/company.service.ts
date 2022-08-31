@@ -56,4 +56,7 @@ export class CompanyService {
     return this._http.get<any>('http://localhost:8090/company/getMyCompany', {headers: this.headers()}).pipe()
   }
 
+  editCompany(company: ICompany){
+    return this._http.post<ICompany>('http://localhost:8090/changeCompany', company, {headers: this.headers()}).pipe()
+  }
 }

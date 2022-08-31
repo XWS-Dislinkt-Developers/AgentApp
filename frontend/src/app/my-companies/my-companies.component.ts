@@ -31,7 +31,8 @@ export class MyCompaniesComponent implements OnInit {
       expires: undefined,
       promoteOnDislinkt: false
     };
-
+office: string=""
+position: string=""
   constructor(private companyService: CompanyService,private route: ActivatedRoute, private impresionService: ImpresionsService, private jobService : JobsService ) { }
 
   ngOnInit(): void {
@@ -42,7 +43,6 @@ export class MyCompaniesComponent implements OnInit {
   getMyCompany(){
     this.companyService.showMyCompany().subscribe(res=> {
       this.company = res;
-      console.log(this.company)
     })
   }
 
@@ -93,5 +93,39 @@ export class MyCompaniesComponent implements OnInit {
     err=> {
       Swal.fire("oppsss", "You didn't create job offer. Try again.")
     })
+  }
+
+  addOffice(office: string){
+    this.company.offices.push(office)
+  }
+
+  remove(index: any){
+    this.company.offices.splice(index, 1);
+  }
+
+  addPosition(pos: string){
+
+  }
+  removePosition(position: any){}
+
+  editCompany(){
+    console.log(this.company)
+    return this.companyService.editCompany(this.company).subscribe( res => { this.company = res;})
+  }
+
+  CreateBase64String(fileInput: any) {
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+          const imgBase64Path = e.target.result;
+          console.log(imgBase64Path);
+          this.company.logoImage = imgBase64Path;
+        };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
   }
 }
