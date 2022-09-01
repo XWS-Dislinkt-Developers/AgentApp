@@ -453,7 +453,7 @@
 </div>
 
 
-  <!-- modal for creating new company -->
+  <!-- modal for edit company -->
   <div id="edit" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
     <div class="modal-dialog">
   
@@ -476,7 +476,7 @@
             
                   <div class="row">
                     <div class="col-sm-9">  <input type="text" class="form-control" placeholder="offices" [(ngModel)]="office"  >   </div>
-                     <div class="col-sm-2"><button type="button" class="btn btn-secondary" (click)="addOffice(office)"> add</button> </div>
+                     <div class="col-sm-2"><button type="button" class="btn btn-secondary" (click)="addOffice(office)"> +</button> </div>
                   </div>
                  
                     <div *ngIf="company.offices.length != 0"> 
@@ -499,15 +499,13 @@
                      <ng-container *ngIf="company.logoImage"> 
                       <img [src]="company.logoImage" style="width: 100px;height:100px;" />
                     </ng-container>
-                        
-                    
                     </div>
           </div>
 
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="editCompany()" >Confirm</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="getMyCompany()">Cancel</button>
         </div>
       </div>
     </div>
@@ -516,62 +514,3 @@
 
 
 
-
-  <!-- modal for edit company -->
-  <!-- <div id="edit" class="modal fade " style="display: none; " role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-  
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Edit company</h4>
-        </div>
-        <div class="modal-body">
-            <div class="form">
-              <label style="font-size: medium;">Name</label>
-              <input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]="company.name" > 
-          
-               <label style="font-size: medium;">Year of opening</label>
-               <input type="number" class="form-control" placeholder="Enter year" [(ngModel)]="company.yearOfOpening" >
-               <label style="font-size: medium;">Number of employees</label>
-               <input type="number" class="form-control" placeholder="Enter number" [(ngModel)]="company.numberOfEmployees" >
-
-               <label style="font-size: medium;">Offices </label>
-              
-                    <div class="row">
-                      <div class="col-sm-9">  <input type="text" class="form-control" placeholder="offices" [(ngModel)]="office"  >   </div>
-                       <div class="col-sm-2"><button type="button" class="btn btn-secondary" (click)="addOffice(office)"> add</button> </div>
-                    </div>
-                   
-                      <div *ngIf="company.offices.length != 0"> 
-                        <div  *ngFor="let officeName of company.offices" class=" row"> 
-                          <div class="col">
-                            <p style="margin-left: 3rem ;">{{officeName}} </p>
-                          </div>
-                        <div class="col"><button type="button" class="btn btn-secondary" (click)="remove(office)"> add</button>  </div></div>
-
-                      </div>
-                        <label style="font-size: medium;">Description </label>  
-                        <textarea class="form-control" [(ngModel)]="company.description" > </textarea>
-                   
-                      <div class="row" style="margin-top: 1rem;">
-                        <div class="col-sm-3"><label style="font-size: medium;" > Logo</label> </div>
-                        <div class="col-sm-9"> <input type="file" (change)="CreateBase64String($event)" class="fileInputProfile form-control" >  </div>
-                        
-                      </div>
-                      <div class="img-space">
-                       <ng-container *ngIf="company.logoImage"> 
-                        <img [src]="company.logoImage" style="width: 100px;height:100px;" />
-                      </ng-container>
-                          
-                      
-                      </div>
-            </div>
-  
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" style="margin-right:30px; " data-dismiss="modal" (click)="editCompany()" >Confirm</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-</div> -->

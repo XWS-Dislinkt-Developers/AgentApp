@@ -17,7 +17,6 @@ import java.util.List;
 
 @RequestMapping(value = "company")
 @Controller
-@CrossOrigin
 public class CompanyController {
 
     private CompanyService companyService;
@@ -54,7 +53,7 @@ public class CompanyController {
         return new ResponseEntity<>(new CompanyDTO(company.getId(), company.getName(), company.getYearOfOpening(), company.getDescription(), company.getOffices(), Math.round(company.getGrade()*100.0)/100.0, company.getLogoImage(), company.getNumberOfEmployees()), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('COMPANY_OWNER')")
+  //  @PreAuthorize("hasAnyRole('COMPANY_OWNER')")
     @PutMapping(value = "/changeCompany")
     public ResponseEntity<CompanyDTO> changeCompany(@RequestBody CompanyChangeDTO companyDTO){
         Company company = this.companyService.changeCompany(companyDTO);

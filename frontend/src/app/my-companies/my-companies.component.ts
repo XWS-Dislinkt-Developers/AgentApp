@@ -103,14 +103,10 @@ position: string=""
     this.company.offices.splice(index, 1);
   }
 
-  addPosition(pos: string){
-
-  }
-  removePosition(position: any){}
-
   editCompany(){
-    console.log(this.company)
-    return this.companyService.editCompany(this.company).subscribe( res => { this.company = res;})
+    return this.companyService.editCompany(this.company).subscribe(
+       res => { this.company = res;},
+       err => { this.getMyCompany()})
   }
 
   CreateBase64String(fileInput: any) {

@@ -24,6 +24,8 @@ export class CompanyService {
   getAllRequests(){
     const loginHeaders = new HttpHeaders({
       Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     });
     return this._http.get<Observable<ICompanyRegistrationRequest>>('http://localhost:8090/companyRequest/getAll', {'headers': this.headers()}).pipe( )
   }
@@ -57,6 +59,6 @@ export class CompanyService {
   }
 
   editCompany(company: ICompany){
-    return this._http.post<ICompany>('http://localhost:8090/changeCompany', company, {headers: this.headers()}).pipe()
+    return this._http.put<ICompany>('http://localhost:8090/company/changeCompany', company, { 'headers' : this.headers()})
   }
 }
